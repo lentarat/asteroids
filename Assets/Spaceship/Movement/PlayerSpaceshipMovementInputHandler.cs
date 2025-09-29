@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerSpaceshipMovementInputHandler : ISpaceshipMover
+public class PlayerSpaceshipMovementInputHandler : MonoBehaviour, ISpaceshipMover
 {
     private PlayerInputActions _playerInputActions;
 
