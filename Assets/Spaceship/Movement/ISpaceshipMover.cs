@@ -3,6 +3,6 @@ using UnityEngine;
 
 public interface ISpaceshipMover
 {
-    event Action<float> OnMove;
-    event Action<float> OnRotate;
+    float GetThrottleValue();
+    float GetTurnDirectionValue();
 }
