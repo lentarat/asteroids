@@ -6,7 +6,7 @@ public class PlayerSpaceshipMovementInputReader : MonoBehaviour, ISpaceshipMover
 {
     private PlayerInputActions _playerInputActions;
 
-    public PlayerSpaceshipMovementInputReader()
+    private void Awake()
     {
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Enable();
