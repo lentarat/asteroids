@@ -1,6 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpaceshipMovement
+public class SpaceshipMovement : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     private SpaceshipMovementSO _spaceshipMovementSO;
@@ -9,18 +10,34 @@ public class SpaceshipMovement
     private float _currentAngularSpeed;
     private Vector2 _currentVelocity;
 
-    public SpaceshipMovement(SpaceshipMovementSO spaceshipMovementSO, ISpaceshipMover spaceshipMover)
-    { 
-        _spaceshipMovementSO = spaceshipMovementSO;
-        _spaceshipMover = spaceshipMover;
+    private void Update()
+    {
+        UpdateVelocityAndRotation();
+    }
+
+    private void UpdateVelocityAndRotation()
+    {
+        float throttleValue = _spaceshipMover.GetThrottleValue();
+        float turnDirectionValue = _spaceshipMover.GetTurnDirectionValue();
+
+        if (throttleValue > 0)
+        { 
+        
+        }
+    }
+
+    private void UpdateVelocity()
+    {
+        Vector2 rotation = new Vector2(transform.rotation.x, transform.rotation.y);
+        _currentVelocity += rotation * _spaceshipMovementSO.Acceleration;
     }
 
     private void FixedUpdate()
     {
-        Move();
+        ApplyNewPositionAndRotation();
     }
 
-    private void Move()
+    private void ApplyNewPositionAndRotation()
     {
         float newRotation = _rigidbody.rotation + _currentAngularSpeed;
         Vector2 newPosition = _rigidbody.position + _currentVelocity;
