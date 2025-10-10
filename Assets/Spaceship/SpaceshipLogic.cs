@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class SpaceshipLogic
+namespace Asteroids.Spaceship
 {
-    private readonly SpaceshipData _spaceshipData;
-    
-    public SpaceshipLogic(SpaceshipData spaceshipData)
+    public class SpaceshipLogic
     {
-        _spaceshipData = spaceshipData;
-    }
+        private readonly SpaceshipData _spaceshipData;
 
-    public void Move() 
-    {
-        _spaceshipData.Position += Vector2.one;
+        public SpaceshipLogic(SpaceshipData spaceshipData)
+        {
+            _spaceshipData = spaceshipData;
+        }
+
+        public void Move()
+        {
+            _spaceshipData.Position += Vector2.one;
+        }
     }
 }

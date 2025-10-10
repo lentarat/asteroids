@@ -1,7 +1,11 @@
 using UnityEngine;
+using Asteroids.Spaceship.Movement;
 
-[CreateAssetMenu(fileName = "SpaceshipSO", menuName = "ScriptableObjects/SpaceshipSO")]
-public class SpaceshipSO : ScriptableObject
+namespace Asteroids.Spaceship
 {
-    [SerializeField] private SpaceshipMovementSO _spaceshipMovementSO;
+    [CreateAssetMenu(fileName = "SpaceshipSO", menuName = "ScriptableObjects/SpaceshipSO")]
+    public class SpaceshipSO : ScriptableObject
+    {
+        [SerializeField] private SpaceshipMovementSO _spaceshipMovementSO;
+    }
 }

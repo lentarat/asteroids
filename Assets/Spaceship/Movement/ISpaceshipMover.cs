@@ -1,8 +1,11 @@
 using System;
 using UnityEngine;
 
-public interface ISpaceshipMover
+namespace Asteroids.Spaceship.Movement
 {
-    float GetThrottleValue();
-    float GetTurnDirectionValue();
+    public interface ISpaceshipMover
+    {
+        float GetThrottleValue();
+        float GetTurnDirectionValue();
+    }
 }

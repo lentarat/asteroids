@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public class Spaceship : MonoBehaviour
+namespace Asteroids.Spaceship
 {
+    public class Spaceship : MonoBehaviour
+    {
 
-    private SpaceshipData _playerSpaceshipData;
-    private SpaceshipLogic _playerSpaceshipLogic;
+        private SpaceshipData _playerSpaceshipData;
+        private SpaceshipLogic _playerSpaceshipLogic;
+    }
 }

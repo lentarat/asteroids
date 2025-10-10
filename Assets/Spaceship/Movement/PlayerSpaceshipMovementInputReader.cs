@@ -2,31 +2,34 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerSpaceshipMovementInputReader : MonoBehaviour, ISpaceshipMover
+namespace Asteroids.Spaceship.Movement
 {
-    private PlayerInputActions _playerInputActions;
-
-    public PlayerSpaceshipMovementInputReader()
+    public class PlayerSpaceshipMovementInputReader : MonoBehaviour, ISpaceshipMover
     {
-        _playerInputActions = new PlayerInputActions();
-        _playerInputActions.Enable();
-    }
+        private PlayerInputActions _playerInputActions;
 
-    float ISpaceshipMover.GetThrottleValue()
-    {
-        float throttleValue = _playerInputActions.Spaceship.Move.ReadValue<float>();
-        return throttleValue;
-    }
+        private void Awake()
+        {
+            _playerInputActions = new PlayerInputActions();
+            _playerInputActions.Enable();
+        }
 
-    float ISpaceshipMover.GetTurnDirectionValue()
-    {
-        float turnDirectionValue = _playerInputActions.Spaceship.Move.ReadValue<float>();
-        return turnDirectionValue;
-    }
+        float ISpaceshipMover.GetThrottleValue()
+        {
+            float throttleValue = _playerInputActions.Spaceship.Move.ReadValue<float>();
+            return throttleValue;
+        }
 
-    private void OnDestroy()
-    {
-        _playerInputActions.Disable();
-        _playerInputActions.Dispose();
+        float ISpaceshipMover.GetTurnDirectionValue()
+        {
+            float turnDirectionValue = _playerInputActions.Spaceship.Move.ReadValue<float>();
+            return turnDirectionValue;
+        }
+
+        private void OnDestroy()
+        {
+            _playerInputActions.Disable();
+            _playerInputActions.Dispose();
+        }
     }
 }
