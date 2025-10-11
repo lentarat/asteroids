@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 2134023524}
   - component: {fileID: 2134023523}
   - component: {fileID: 2134023522}
-  - component: {fileID: 2134023521}
+  - component: {fileID: 2134023526}
   m_Layer: 0
   m_Name: PlayerSpaceship
   m_TagString: Untagged
@@ -360,18 +360,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2134023521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134023520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e56667971c47f40ab9878b30b3acad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2134023522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +469,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2134023526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134023520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b97a112baaec9468616446cff44d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 2134023523}
+  _spaceshipMovementSO: {fileID: 11400000, guid: e328619d8a2bff14788c66238572cb26, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

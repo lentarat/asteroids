@@ -4,19 +4,19 @@ using UnityEngine.InputSystem;
 
 namespace Asteroids.Spaceship.Movement
 {
-    public class PlayerSpaceshipMovementInputReader : MonoBehaviour, ISpaceshipMover
+    public class PlayerSpaceshipMovementInputReader : ISpaceshipMover
     {
         private PlayerInputActions _playerInputActions;
 
-        private void Awake()
+        public PlayerSpaceshipMovementInputReader()
         {
             _playerInputActions = new PlayerInputActions();
             _playerInputActions.Enable();
         }
 
-        float ISpaceshipMover.GetThrottleValue()
+        int ISpaceshipMover.GetThrottleValue()
         {
-            float throttleValue = _playerInputActions.Spaceship.Move.ReadValue<float>();
+            int throttleValue = _playerInputActions.Spaceship.Move.ReadValue<int>();
             return throttleValue;
         }
 
@@ -26,7 +26,7 @@ namespace Asteroids.Spaceship.Movement
             return turnDirectionValue;
         }
 
-        private void OnDestroy()
+        ~PlayerSpaceshipMovementInputReader()
         {
             _playerInputActions.Disable();
             _playerInputActions.Dispose();

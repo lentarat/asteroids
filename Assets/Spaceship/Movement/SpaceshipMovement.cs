@@ -2,19 +2,39 @@ using UnityEngine;
 
 namespace Asteroids.Spaceship.Movement
 {
-    public class SpaceshipMovement
+    public class SpaceshipMovement : MonoBehaviour
     {
-        private Rigidbody2D _rigidbody;
-        private SpaceshipMovementSO _spaceshipMovementSO;
-        private ISpaceshipMover _spaceshipMover;
-
+        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private SpaceshipMovementSO _spaceshipMovementSO;
+        
         private float _currentAngularSpeed;
         private Vector2 _currentVelocity;
+        private ISpaceshipMover _spaceshipMover;
 
-        public SpaceshipMovement(SpaceshipMovementSO spaceshipMovementSO, ISpaceshipMover spaceshipMover)
+        private void Awake()
         {
-            _spaceshipMovementSO = spaceshipMovementSO;
-            _spaceshipMover = spaceshipMover;
+            _spaceshipMover = new PlayerSpaceshipMovementInputReader();
+        }
+
+        private void Update()
+        {
+            HandleCurrentVelocity();
+            HandleCurrentAngularSpeed();
+        }
+
+        private void HandleCurrentVelocity()
+        {
+            int throttleValue = _spaceshipMover.GetThrottleValue();
+            if (throttleValue > 0)
+            {
+                Vector3 velocityOffset = transform.up * _spaceshipMovementSO.Acceleration * Time.deltaTime;
+                _currentVelocity += new Vector2(velocityOffset.x, velocityOffset.y);
+            }
+        }
+
+        private void HandleCurrentAngularSpeed()
+        { 
+        
         }
 
         private void FixedUpdate()
@@ -24,8 +44,8 @@ namespace Asteroids.Spaceship.Movement
 
         private void Move()
         {
-            float newRotation = _rigidbody.rotation + _currentAngularSpeed;
-            Vector2 newPosition = _rigidbody.position + _currentVelocity;
+            float newRotation = _rigidbody.rotation + _currentAngularSpeed * Time.fixedDeltaTime;
+            Vector2 newPosition = _rigidbody.position + _currentVelocity * Time.fixedDeltaTime;
             _rigidbody.MovePosition(newPosition);
             _rigidbody.MoveRotation(newRotation);
         }

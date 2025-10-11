@@ -5,7 +5,7 @@ namespace Asteroids.Spaceship.Movement
 {
     public interface ISpaceshipMover
     {
-        float GetThrottleValue();
+        int GetThrottleValue();
         float GetTurnDirectionValue();
     }
 }
