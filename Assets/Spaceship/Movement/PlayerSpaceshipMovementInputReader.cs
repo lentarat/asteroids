@@ -14,15 +14,16 @@ namespace Asteroids.Spaceship.Movement
             _playerInputActions.Enable();
         }
 
-        int ISpaceshipMover.GetThrottleValue()
+        float ISpaceshipMover.GetThrottleValue()
         {
-            int throttleValue = _playerInputActions.Spaceship.Move.ReadValue<int>();
+            float throttleValue = _playerInputActions.Spaceship.Move.ReadValue<float>();
             return throttleValue;
         }
 
         float ISpaceshipMover.GetTurnDirectionValue()
         {
-            float turnDirectionValue = _playerInputActions.Spaceship.Move.ReadValue<float>();
+            float turnDirectionValue = _playerInputActions.Spaceship.Rotate.ReadValue<float>();
+            Debug.Log(turnDirectionValue);
             return turnDirectionValue;
         }
 

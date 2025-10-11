@@ -24,17 +24,24 @@ namespace Asteroids.Spaceship.Movement
 
         private void HandleCurrentVelocity()
         {
-            int throttleValue = _spaceshipMover.GetThrottleValue();
+            float throttleValue = _spaceshipMover.GetThrottleValue();
             if (throttleValue > 0)
             {
-                Vector3 velocityOffset = transform.up * _spaceshipMovementSO.Acceleration * Time.deltaTime;
+                Vector3 velocityOffset =
+                    transform.up * _spaceshipMovementSO.Acceleration * Time.deltaTime;
                 _currentVelocity += new Vector2(velocityOffset.x, velocityOffset.y);
             }
         }
 
         private void HandleCurrentAngularSpeed()
-        { 
-        
+        {
+            float turnDirectionValue = _spaceshipMover.GetTurnDirectionValue();
+            if (turnDirectionValue != 0)
+            {
+                float angularSpeedOffset = Mathf.Sign(turnDirectionValue) *
+                    _spaceshipMovementSO.AngularAcceleration * Time.deltaTime;
+                _currentAngularSpeed += angularSpeedOffset;
+            }
         }
 
         private void FixedUpdate()
@@ -44,7 +51,7 @@ namespace Asteroids.Spaceship.Movement
 
         private void Move()
         {
-            float newRotation = _rigidbody.rotation + _currentAngularSpeed * Time.fixedDeltaTime;
+            float newRotation = _rigidbody.rotation - _currentAngularSpeed * Time.fixedDeltaTime;
             Vector2 newPosition = _rigidbody.position + _currentVelocity * Time.fixedDeltaTime;
             _rigidbody.MovePosition(newPosition);
             _rigidbody.MoveRotation(newRotation);
