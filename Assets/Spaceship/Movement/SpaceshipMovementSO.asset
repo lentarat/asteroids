@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0893f80403b414e877d0d49f9c9a97, type: 3}
   m_Name: SpaceshipMovementSO
   m_EditorClassIdentifier: 
-  _acceleration: 5
-  _angularAcceleration: 20
+  _acceleration: 10
+  _angularAcceleration: 2000
+  _maxAngularSpeed: 360

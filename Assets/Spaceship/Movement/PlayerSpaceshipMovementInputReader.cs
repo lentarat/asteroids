@@ -23,7 +23,6 @@ namespace Asteroids.Spaceship.Movement
         float ISpaceshipMover.GetTurnDirectionValue()
         {
             float turnDirectionValue = _playerInputActions.Spaceship.Rotate.ReadValue<float>();
-            Debug.Log(turnDirectionValue);
             return turnDirectionValue;
         }
 

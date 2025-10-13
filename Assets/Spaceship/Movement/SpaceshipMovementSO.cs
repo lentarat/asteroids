@@ -9,5 +9,7 @@ namespace Asteroids.Spaceship.Movement
         public float Acceleration => _acceleration;
         [SerializeField] private float _angularAcceleration;
         public float AngularAcceleration => _angularAcceleration;
+        [SerializeField] private float _maxAngularSpeed;
+        public float MaxAngularSpeed => _maxAngularSpeed;  
     }
 }

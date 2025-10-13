@@ -7,7 +7,8 @@ namespace Asteroids.Spaceship.Movement
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private SpaceshipMovementSO _spaceshipMovementSO;
         
-        private float _currentAngularSpeed;
+        private float _currentAngularVelocity;
+        private float _minAngularVelocity = 5f;
         private Vector2 _currentVelocity;
         private ISpaceshipMover _spaceshipMover;
 
@@ -19,7 +20,7 @@ namespace Asteroids.Spaceship.Movement
         private void Update()
         {
             HandleCurrentVelocity();
-            HandleCurrentAngularSpeed();
+            HandleCurrentAngularVelocity();
         }
 
         private void HandleCurrentVelocity()
@@ -33,27 +34,62 @@ namespace Asteroids.Spaceship.Movement
             }
         }
 
-        private void HandleCurrentAngularSpeed()
+        private void HandleCurrentAngularVelocity()
         {
             float turnDirectionValue = _spaceshipMover.GetTurnDirectionValue();
-            if (turnDirectionValue != 0)
+            bool isExceedingMinAngularVelocity = ExceedsMinAngularVelocity();
+
+            if (turnDirectionValue == 0f && isExceedingMinAngularVelocity)
             {
-                float angularSpeedOffset = Mathf.Sign(turnDirectionValue) *
+                float angularVelocityOffset = -System.MathF.Sign(_currentAngularVelocity) *
                     _spaceshipMovementSO.AngularAcceleration * Time.deltaTime;
-                _currentAngularSpeed += angularSpeedOffset;
+                _currentAngularVelocity += angularVelocityOffset;
+
+                isExceedingMinAngularVelocity = ExceedsMinAngularVelocity();
+                if (isExceedingMinAngularVelocity == false)
+                {
+                    _currentAngularVelocity = 0f;
+                }
+                //float blend = _spaceshipMovementSO.AngularAcceleration * Time.deltaTime;
+                //_currentAngularSpeed = Mathf.Lerp(_currentAngularSpeed, 0f, blend);
             }
+            else
+            {
+                float angularVelocityOffset = System.MathF.Sign(turnDirectionValue) *
+                    _spaceshipMovementSO.AngularAcceleration * Time.deltaTime;
+
+                _currentAngularVelocity += angularVelocityOffset;
+
+                _currentAngularVelocity = Mathf.Clamp(
+                    _currentAngularVelocity,
+                    -_spaceshipMovementSO.MaxAngularSpeed,
+                    _spaceshipMovementSO.MaxAngularSpeed
+                    );
+            }
+        }
+
+        private bool ExceedsMinAngularVelocity()
+        {
+            bool isExceedingMinAngularVelocity = Mathf.Abs(_currentAngularVelocity) > _minAngularVelocity;
+            return isExceedingMinAngularVelocity;
         }
 
         private void FixedUpdate()
         {
             Move();
+            Rotate();
         }
 
         private void Move()
         {
-            float newRotation = _rigidbody.rotation - _currentAngularSpeed * Time.fixedDeltaTime;
             Vector2 newPosition = _rigidbody.position + _currentVelocity * Time.fixedDeltaTime;
             _rigidbody.MovePosition(newPosition);
+            
+        }
+
+        private void Rotate()
+        {
+            float newRotation = _rigidbody.rotation - _currentAngularVelocity * Time.fixedDeltaTime;
             _rigidbody.MoveRotation(newRotation);
         }
     }
