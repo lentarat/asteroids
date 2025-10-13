@@ -50,8 +50,6 @@ namespace Asteroids.Spaceship.Movement
                 {
                     _currentAngularVelocity = 0f;
                 }
-                //float blend = _spaceshipMovementSO.AngularAcceleration * Time.deltaTime;
-                //_currentAngularSpeed = Mathf.Lerp(_currentAngularSpeed, 0f, blend);
             }
             else
             {
