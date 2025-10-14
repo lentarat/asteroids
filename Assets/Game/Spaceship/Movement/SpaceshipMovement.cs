@@ -14,7 +14,7 @@ namespace Asteroids.Spaceship.Movement
 
         private void Awake()
         {
-            _spaceshipMover = new PlayerSpaceshipMovementInputReader();
+            //_spaceshipMover = new PlayerSpaceshipMovementInputReader();
         }
 
         private void Update()

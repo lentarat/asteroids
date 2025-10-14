@@ -8,9 +8,8 @@ namespace Asteroids.Spaceship.Movement
     {
         private PlayerInputActions _playerInputActions;
 
-        public PlayerSpaceshipMovementInputReader()
+        public PlayerSpaceshipMovementInputReader(PlayerInputActions playerInputActions)
         {
-            _playerInputActions = new PlayerInputActions();
             _playerInputActions.Enable();
         }
 
