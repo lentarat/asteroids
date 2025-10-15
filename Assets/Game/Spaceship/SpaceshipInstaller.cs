@@ -1,12 +1,23 @@
+using Asteroids.Spaceship;
 using Asteroids.Spaceship.Movement;
 using UnityEngine;
 using Zenject;
 
-public class SpaceshipInstaller : MonoInstaller
+namespace Asteroids.Installers
 {
-    public override void InstallBindings()
+    public class SpaceshipInstaller : MonoInstaller
     {
-        Container.Bind<PlayerInputActions>().AsSingle();
-        Container.Bind<ISpaceshipMover>().To<PlayerSpaceshipMovementInputReader>();
+        [SerializeField] private GameObject _spaceshipPrefab;
+        [SerializeField] private Transform _spaceshipParent;
+
+        public override void InstallBindings()
+        {
+            Container.BindFactory<Spaceship.Spaceship, SpaceshipFactory>()
+                .FromComponentInNewPrefab(_spaceshipPrefab)
+                .UnderTransform(_spaceshipParent);
+
+            Container.Bind<PlayerInputActions>().AsSingle();
+            Container.Bind<ISpaceshipMover>().To<PlayerSpaceshipMovementInputReader>();
+        }
     }
 }
