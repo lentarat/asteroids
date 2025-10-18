@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace Asteroids.Spaceship.Movement
 {
@@ -12,9 +13,10 @@ namespace Asteroids.Spaceship.Movement
         private Vector2 _currentVelocity;
         private ISpaceshipMover _spaceshipMover;
 
-        private void Awake()
+        [Inject]
+        private void Construct(ISpaceshipMover spaceshipMover)
         {
-            //_spaceshipMover = new PlayerSpaceshipMovementInputReader();
+            _spaceshipMover = spaceshipMover;
         }
 
         private void Update()

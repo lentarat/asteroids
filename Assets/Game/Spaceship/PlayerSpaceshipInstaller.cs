@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Asteroids.Installers
 {
-    public class SpaceshipInstaller : MonoInstaller
+    public class PlayerSpaceshipInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _spaceshipPrefab;
         [SerializeField] private Transform _spaceshipParent;
@@ -16,7 +16,6 @@ namespace Asteroids.Installers
                 .FromComponentInNewPrefab(_spaceshipPrefab)
                 .UnderTransform(_spaceshipParent);
 
-            Container.Bind<PlayerInputActions>().AsSingle();
             Container.Bind<ISpaceshipMover>().To<PlayerSpaceshipMovementInputReader>();
         }
     }

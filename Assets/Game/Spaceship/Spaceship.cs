@@ -1,4 +1,6 @@
+using Asteroids.Spaceship.Movement;
 using UnityEngine;
+using Zenject;
 
 namespace Asteroids.Spaceship
 {
@@ -7,5 +9,11 @@ namespace Asteroids.Spaceship
 
         private SpaceshipData _playerSpaceshipData;
         private SpaceshipLogic _playerSpaceshipLogic;
+
+        //[Inject]
+        //private void Construct(ISpaceshipMover spaceshipMover)
+        //{
+        //    spaceshipMover
+        //}
     }
 }
