@@ -5,16 +5,13 @@ using Zenject;
 
 namespace Asteroids.Installers
 {
-    public class PlayerSpaceshipInstaller : SpaceshipInstaller
+    public abstract class SpaceshipInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _spaceshipPrefab;
         [SerializeField] private Transform _spaceshipParent;
 
-        protected override void BindSpaceshipMover()
-        {
-            Container.Bind<ISpaceshipMover>().To<PlayerSpaceshipMovementInputReader>();
-        }
-
+        protected abstract void BindSpaceshipMover();
+        
         public override void InstallBindings()
         {
             BindFactory();

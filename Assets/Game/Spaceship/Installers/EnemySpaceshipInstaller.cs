@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Asteroids.Installers
 {
-    public class PlayerSpaceshipInstaller : SpaceshipInstaller
+    public class EnemySpaceshipInstaller : SpaceshipInstaller
     {
         [SerializeField] private GameObject _spaceshipPrefab;
         [SerializeField] private Transform _spaceshipParent;
@@ -18,7 +18,6 @@ namespace Asteroids.Installers
         public override void InstallBindings()
         {
             BindFactory();
-            BindSpaceshipMover();
         }
 
         private void BindFactory()
