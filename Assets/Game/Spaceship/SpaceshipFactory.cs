@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Asteroids.Spaceship
 {
-    public class SpaceshipFactory : PlaceholderFactory<Spaceship>
+    public class SpaceshipFactory : PlaceholderFactory<SpaceshipContext, Spaceship>
     {
 
     }

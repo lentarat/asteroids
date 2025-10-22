@@ -1,16 +1,15 @@
+using Asteroids.Spaceship.Movement;
 using UnityEngine;
 
-public class EnemySpaceshipMover : MonoBehaviour
+public class EnemySpaceshipMover : ISpaceshipMover
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    float ISpaceshipMover.GetThrottleValue()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    float ISpaceshipMover.GetTurnDirectionValue()
     {
-        
+        throw new System.NotImplementedException();
     }
 }

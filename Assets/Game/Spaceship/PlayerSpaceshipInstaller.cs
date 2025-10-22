@@ -7,26 +7,9 @@ namespace Asteroids.Installers
 {
     public class PlayerSpaceshipInstaller : SpaceshipInstaller
     {
-        [SerializeField] private GameObject _spaceshipPrefab;
-        [SerializeField] private Transform _spaceshipParent;
-
         protected override void BindSpaceshipMover()
         {
             Container.Bind<ISpaceshipMover>().To<PlayerSpaceshipMovementInputReader>();
-        }
-
-        public override void InstallBindings()
-        {
-            BindFactory();
-            BindSpaceshipMover();
-        }
-
-        private void BindFactory()
-        {
-            Container.BindFactory<Spaceship.Spaceship, SpaceshipFactory>()
-                .FromComponentInNewPrefab(_spaceshipPrefab)
-                .UnderTransform(_spaceshipParent)
-                .AsSingle();
         }
     }
 }

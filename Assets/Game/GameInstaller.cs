@@ -12,7 +12,11 @@ namespace Asteroids.Installers
 
         private void BindPlayerInputActions()
         {
-            Container.Bind<PlayerInputActions>().AsSingle();
+            Container.Bind<PlayerInputActions>()
+                .AsSingle();
+            Container.BindInterfacesAndSelfTo<InputBootstrapper>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

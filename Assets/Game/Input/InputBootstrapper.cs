@@ -4,12 +4,12 @@ using Zenject;
 
 namespace Asteroids
 {
-    public class InputBoostrapper : IInitializable, IDisposable
+    public class InputBootstrapper : IInitializable, IDisposable
     {
         private readonly PlayerInputActions _playerInputActions;
 
         [Inject]
-        public InputBoostrapper(PlayerInputActions playerInputActions)
+        public InputBootstrapper(PlayerInputActions playerInputActions)
         {
             _playerInputActions = playerInputActions;
         }
