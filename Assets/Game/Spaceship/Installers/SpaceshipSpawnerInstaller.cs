@@ -13,7 +13,6 @@ namespace Asteroids.Installers
         public override void InstallBindings()
         {
             BindFactory();
-            BindInputActions();
         }
 
         private void BindFactory()
@@ -22,11 +21,6 @@ namespace Asteroids.Installers
                 .FromComponentInNewPrefab(_spaceshipPrefab)
                 .UnderTransform(_spaceshipParent)
                 .AsSingle();
-        }
-
-        private void BindInputActions()
-        {
-            Container.Bind<PlayerInputActions>().AsSingle();
         }
     }
 }

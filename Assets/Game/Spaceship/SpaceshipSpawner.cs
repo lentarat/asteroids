@@ -30,7 +30,7 @@ namespace Asteroids.Spaceship
             PlayerSpaceshipMovementInputReader playerSpaceshipMovementInputReader
              = new(_playerInputActions);
             SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
-            _spaceshipFactory.Create(playerSpaceshipContext);
+            Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
         }
 
         private UniTask SpawnEnemySpaceshipsLoopAsync()

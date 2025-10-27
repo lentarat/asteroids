@@ -10,11 +10,18 @@ namespace Asteroids.Spaceship
         private SpaceshipData _playerSpaceshipData;
         private SpaceshipLogic _playerSpaceshipLogic;
 
-        private SpaceshipMovement _spaceshipMovement;
+        [SerializeField] private SpaceshipMovement _spaceshipMovement;
 
-        public Spaceship(SpaceshipContext spaceshipContext)
+        [Inject]
+        private void Construct(SpaceshipContext spaceshipContext)
         {
-            
-        }// prefabs vs runtime
+            InitializeSpaceshipMovement(spaceshipContext);
+        }
+
+        private void InitializeSpaceshipMovement(SpaceshipContext spaceshipContext)
+        {
+            ISpaceshipMover spaceshipMover = spaceshipContext.SpaceshipMover;
+            _spaceshipMovement.Init(spaceshipMover);
+        }
     }
 }

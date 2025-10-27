@@ -13,8 +13,7 @@ namespace Asteroids.Spaceship.Movement
         private Vector2 _currentVelocity;
         private ISpaceshipMover _spaceshipMover;
 
-        [Inject]
-        private void Construct(ISpaceshipMover spaceshipMover)
+        public void Init(ISpaceshipMover spaceshipMover)
         {
             _spaceshipMover = spaceshipMover;
         }
