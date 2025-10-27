@@ -5,25 +5,28 @@ using Zenject;
 
 namespace Asteroids.Installers
 {
-    public abstract class SpaceshipInstaller : MonoInstaller
+    public class SpaceshipSpawnerInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _spaceshipPrefab;
         [SerializeField] private Transform _spaceshipParent;
-
-        protected abstract void BindSpaceshipMover();
         
         public override void InstallBindings()
         {
             BindFactory();
-            BindSpaceshipMover();
+            BindInputActions();
         }
 
         private void BindFactory()
         {
-            Container.BindFactory<Spaceship.Spaceship, SpaceshipFactory>()
+            Container.BindFactory<SpaceshipContext, Spaceship.Spaceship, SpaceshipFactory>()
                 .FromComponentInNewPrefab(_spaceshipPrefab)
                 .UnderTransform(_spaceshipParent)
                 .AsSingle();
+        }
+
+        private void BindInputActions()
+        {
+            Container.Bind<PlayerInputActions>().AsSingle();
         }
     }
 }
