@@ -2,6 +2,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Zenject;
 using Asteroids.Spaceship.Movement;
+using Asteroids.Utils;
 
 namespace Asteroids.Spaceship
 {
@@ -33,18 +34,28 @@ namespace Asteroids.Spaceship
             Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
         }
 
-        private UniTask SpawnEnemySpaceshipsLoopAsync()
+        private async UniTask SpawnEnemySpaceshipsLoopAsync()
         {
             while (true)
             {
                 SpawnEnemySpaceship();
 
-                UniTask.WaitForSeconds(1);
+                await UniTask.WaitForSeconds(1);
             }
         }
 
         private void SpawnEnemySpaceship()
         {
+            PlayerSpaceshipMovementInputReader playerSpaceshipMovementInputReader
+             = new(_playerInputActions);
+            SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
+            Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
+
+            WorldBoundaries worldBoundaries = WorldBoundaries.GetWorldBoundaries();
+            spaceship.transform.position = worldBoundaries.LeftUpper;
+
         }
+
+        private Vector2 GetRandomPosition
     }
 }
