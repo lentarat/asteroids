@@ -40,7 +40,7 @@ namespace Asteroids.Spaceship
             {
                 SpawnEnemySpaceship();
 
-                await UniTask.WaitForSeconds(1);
+                await UniTask.WaitForSeconds(0.05f);
             }
         }
 
@@ -51,11 +51,9 @@ namespace Asteroids.Spaceship
             SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
             Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
 
-            WorldBoundaries worldBoundaries = WorldBoundaries.GetWorldBoundaries();
-            spaceship.transform.position = worldBoundaries.LeftUpper;
-
+            WorldBoundaries worldBoundaries = WorldBoundaryUtils.GetWorldBoundaries(Camera.main);
+            Vector2 randomSpawnPosition = WorldBoundaryUtils.GetRandomPositionBeyondBoundaries(worldBoundaries);
+            spaceship.transform.position = randomSpawnPosition;
         }
-
-        private Vector2 GetRandomPosition
     }
 }

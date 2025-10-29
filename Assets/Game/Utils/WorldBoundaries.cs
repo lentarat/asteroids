@@ -4,55 +4,17 @@ namespace Asteroids.Utils
 {
     public struct WorldBoundaries
     {
-        public Vector2 RightUpper { get; private set; }
-        public Vector2 RightLower { get; private set; }
-        public Vector2 LeftUpper { get; private set; }
-        public Vector2 LeftLower { get; private set; }
+        public readonly Vector2 UpperVector { get; }
+        public readonly Vector2 RightVector { get; }
+        public readonly Vector2 LowerVector { get; }
+        public readonly Vector2 LeftVector { get; }
 
-        public Vector2 this[int index]
+        public WorldBoundaries(Vector2 upperVector, Vector2 rightVector, Vector2 lowerVector, Vector2 leftVector)
         {
-            get
-            { 
-                return index switch
-                { 
-                    0 => RightUpper,
-                    1 => RightLower,
-                    2 => LeftUpper,
-                    3 => LeftLower,
-                    _ => throw new System.IndexOutOfRangeException("Invalid world boundaries index.")
-                };
-            }
-        }
-
-        public static Vector2 GetRandomPositionBeyondBoundaries()
-        {
-            WorldBoundaries worldBoundaries = GetWorldBoundaries();
-            return Vector2.zero;
-        }
-
-        private static WorldBoundaries GetWorldBoundaries()
-        {
-            Camera camera = Camera.main;
-
-            Vector3 rightUpperScreenPosition = new Vector3(Screen.width, Screen.height, 0f);
-            Vector3 rightLowerScreenPosition = new Vector3(Screen.width, 0f, 0f);
-            Vector3 leftUpperScreenPosition = new Vector3(0f, Screen.height, 0f);
-            Vector3 leftLowerScreenPosition = new Vector3(0f, 0f, 0f);
-
-            Vector2 rightUpperWorldPosition = camera.ScreenToWorldPoint(rightUpperScreenPosition);
-            Vector2 rightLowerWorldPosition = camera.ScreenToWorldPoint(rightLowerScreenPosition);
-            Vector2 leftUpperWorldPosition = camera.ScreenToWorldPoint(leftUpperScreenPosition);
-            Vector2 leftLowerWorldPosition = camera.ScreenToWorldPoint(leftLowerScreenPosition);
-
-            WorldBoundaries worldBoundaries = new WorldBoundaries()
-            {
-                RightUpper = rightUpperWorldPosition,
-                RightLower = rightLowerWorldPosition,
-                LeftUpper = leftUpperWorldPosition,
-                LeftLower = leftLowerWorldPosition,
-            };
-
-            return worldBoundaries;
+            UpperVector = upperVector;
+            RightVector = rightVector;
+            LowerVector = lowerVector;
+            LeftVector = leftVector;
         }
     }
 }
