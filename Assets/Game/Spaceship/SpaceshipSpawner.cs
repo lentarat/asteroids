@@ -31,7 +31,7 @@ namespace Asteroids.Spaceship
             PlayerSpaceshipMovementInputReader playerSpaceshipMovementInputReader
              = new(_playerInputActions);
             SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
-            Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
+            //Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
         }
 
         private async UniTask SpawnEnemySpaceshipsLoopAsync()
@@ -49,11 +49,11 @@ namespace Asteroids.Spaceship
             PlayerSpaceshipMovementInputReader playerSpaceshipMovementInputReader
              = new(_playerInputActions);
             SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
-            Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
+            //Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
 
             WorldBoundaries worldBoundaries = WorldBoundaryUtils.GetWorldBoundaries(Camera.main);
             Vector2 randomSpawnPosition = WorldBoundaryUtils.GetRandomPositionBeyondBoundaries(worldBoundaries);
-            spaceship.transform.position = randomSpawnPosition;
+            //spaceship.transform.position = randomSpawnPosition;
         }
     }
 }
