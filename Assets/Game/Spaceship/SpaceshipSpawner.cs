@@ -28,10 +28,10 @@ namespace Asteroids.Spaceship
 
         private void CreatePlayerSpaceship()
         {
-            PlayerSpaceshipMovementInputReader playerSpaceshipMovementInputReader
-             = new(_playerInputActions);
-            SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
-            //Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
+            //PlayerSpaceshipMovementInputReader playerSpaceshipMovementInputReader
+            // = new(_playerInputActions);
+            //SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
+            _spaceshipFactory.CreatePlayerSpaceship();
         }
 
         private async UniTask SpawnEnemySpaceshipsLoopAsync()
@@ -48,7 +48,7 @@ namespace Asteroids.Spaceship
         {
             PlayerSpaceshipMovementInputReader playerSpaceshipMovementInputReader
              = new(_playerInputActions);
-            SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
+            //SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
             //Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
 
             WorldBoundaries worldBoundaries = WorldBoundaryUtils.GetWorldBoundaries(Camera.main);

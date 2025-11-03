@@ -1,16 +1,17 @@
 using UnityEngine;
 
-public class PlayerSpaceshipShootingReader : MonoBehaviour
+namespace Asteroids.Spaceship.Shooting
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class PlayerSpaceshipShootingReader : ISpaceshipShooter
     {
-        
-    }
+        void ISpaceshipShooter.Shoot()
+        {
+            throw new System.NotImplementedException();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        bool ISpaceshipShooter.ShouldShoot()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
