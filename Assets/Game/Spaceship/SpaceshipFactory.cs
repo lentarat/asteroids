@@ -24,14 +24,15 @@ namespace Asteroids.Spaceship
 
         public void CreatePlayerSpaceship()
         {
-            Spaceship playerSpaceship = GameObject.Instantiate(_spaceshipPrefab);
-            playerSpaceship.InitializeSpaceship(_playerSpaceshipContext);
-            
+            Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
+            spaceship.InitializeSpaceship(_playerSpaceshipContext);   
         }
 
-        public void CreateEnemySpaceship()
-        { 
-            
+        public void CreateEnemySpaceship(Vector2 position)
+        {
+            Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
+            spaceship.InitializeSpaceship(_enemySpaceshipContext);
+            spaceship.transform.position = position;
         }
     }
 

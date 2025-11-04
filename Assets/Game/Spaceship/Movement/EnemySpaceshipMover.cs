@@ -3,13 +3,20 @@ using UnityEngine;
 
 public class EnemySpaceshipMover : ISpaceshipMover
 {
+    //private Transform _enemyTransform;
+
+    //public EnemySpaceshipMover(Transform enemyTransform)
+    //{
+    //    _enemyTransform = enemyTransform;   
+    //}
+
     float ISpaceshipMover.GetThrottleValue()
     {
-        throw new System.NotImplementedException();
+        return 0f;
     }
 
     float ISpaceshipMover.GetTurnDirectionValue()
     {
-        throw new System.NotImplementedException();
+        return 0f;
     }
 }

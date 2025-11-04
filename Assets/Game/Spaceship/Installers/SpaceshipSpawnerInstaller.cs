@@ -20,7 +20,7 @@ namespace Asteroids.Installers
         private void BindSpaceship()
         {
             Container.Bind<Spaceship.Spaceship>()
-                .FromComponentInNewPrefab(_spaceshipPrefab)
+                .FromInstance(_spaceshipPrefab)
                 .AsSingle();
         }
 
@@ -29,12 +29,12 @@ namespace Asteroids.Installers
             Container.Bind<SpaceshipContext>()
                     .WithId(SpaceshipType.Player)
                     .FromMethod(GetPlayerSpaceshipContext)
-                    .AsSingle();
+                    .AsCached();
 
             Container.Bind<SpaceshipContext>()
                     .WithId(SpaceshipType.Enemy)
                     .FromMethod(GetEnemySpaceshipContext)
-                    .AsSingle();
+                    .AsCached();
         }
 
         private void BindFactory()
@@ -46,17 +46,16 @@ namespace Asteroids.Installers
         {
             ISpaceshipMover spaceshipMover = Container.ResolveId<ISpaceshipMover>(SpaceshipType.Player);
             ISpaceshipShooter spaceshipShooter = Container.ResolveId<ISpaceshipShooter>(SpaceshipType.Player);
-            SpaceshipContext playerSpaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, Color.green);
-            return playerSpaceshipContext;
+            SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, Color.green);
+            return spaceshipContext;
         }
 
         private SpaceshipContext GetEnemySpaceshipContext()
-        {
-            return default;
-            //ISpaceshipMover spaceshipMover = Container.ResolveId<ISpaceshipMover>(SpaceshipType.Player);
-            //ISpaceshipShooter spaceshipShooter = Container.ResolveId<ISpaceshipShooter>(SpaceshipType.Player);
-            //SpaceshipContext playerSpaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, Color.green);
-            //return playerSpaceshipContext;
+        { 
+            ISpaceshipMover spaceshipMover = Container.ResolveId<ISpaceshipMover>(SpaceshipType.Enemy);
+            ISpaceshipShooter spaceshipShooter = Container.ResolveId<ISpaceshipShooter>(SpaceshipType.Enemy);
+            SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, Color.red);
+            return spaceshipContext;
         }
 
         private SpaceshipContext BuildSpaceshipContext()

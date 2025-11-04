@@ -9,15 +9,11 @@ namespace Asteroids.Spaceship
     public class SpaceshipSpawner : MonoBehaviour
     {
         private SpaceshipFactory _spaceshipFactory;
-        private PlayerInputActions _playerInputActions;
 
         [Inject]
-        private void Construct(
-            SpaceshipFactory spaceshipFactory,
-            PlayerInputActions playerInputActions)
+        private void Construct(SpaceshipFactory spaceshipFactory)
         { 
             _spaceshipFactory = spaceshipFactory;
-            _playerInputActions = playerInputActions;
         }
 
         private void Start()
@@ -28,9 +24,6 @@ namespace Asteroids.Spaceship
 
         private void CreatePlayerSpaceship()
         {
-            //PlayerSpaceshipMovementInputReader playerSpaceshipMovementInputReader
-            // = new(_playerInputActions);
-            //SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
             _spaceshipFactory.CreatePlayerSpaceship();
         }
 
@@ -39,20 +32,18 @@ namespace Asteroids.Spaceship
             while (true)
             {
                 SpawnEnemySpaceship();
-
                 await UniTask.WaitForSeconds(0.05f);
             }
         }
 
         private void SpawnEnemySpaceship()
         {
-            PlayerSpaceshipMovementInputReader playerSpaceshipMovementInputReader
-             = new(_playerInputActions);
             //SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
             //Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
 
             WorldBoundaries worldBoundaries = WorldBoundaryUtils.GetWorldBoundaries(Camera.main);
             Vector2 randomSpawnPosition = WorldBoundaryUtils.GetRandomPositionBeyondBoundaries(worldBoundaries);
+            _spaceshipFactory.CreateEnemySpaceship(randomSpawnPosition);
             //spaceship.transform.position = randomSpawnPosition;
         }
     }

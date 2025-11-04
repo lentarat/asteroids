@@ -14,6 +14,7 @@ namespace Asteroids.Installers
         {
             Container.Bind<PlayerInputActions>()
                 .AsSingle();
+
             Container.BindInterfacesAndSelfTo<InputBootstrapper>()
                 .AsSingle()
                 .NonLazy();

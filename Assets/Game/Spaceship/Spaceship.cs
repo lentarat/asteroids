@@ -12,6 +12,9 @@ namespace Asteroids.Spaceship
         {
             ISpaceshipMover spaceshipMover = spaceshipContext.SpaceshipMover;
             _spaceshipMovement.Init(spaceshipMover);
+
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.color = spaceshipContext.Color;
         }
     }
 }

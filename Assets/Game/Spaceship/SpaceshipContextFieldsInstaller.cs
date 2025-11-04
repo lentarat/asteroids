@@ -1,6 +1,5 @@
 using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
-using UnityEngine;
 using Zenject;
 
 namespace Asteroids.Installers
@@ -9,10 +8,11 @@ namespace Asteroids.Installers
     {
         public override void InstallBindings()
         {
-            BindPlayerSpaceshipContext();
+            BindPlayerSpaceshipContextFields();
+            BindEnemySpaceshipContextFields();
         }
 
-        private void BindPlayerSpaceshipContext()
+        private void BindPlayerSpaceshipContextFields()
         {
             Container.Bind<ISpaceshipMover>()
                 .WithId(SpaceshipType.Player)
@@ -22,6 +22,19 @@ namespace Asteroids.Installers
             Container.Bind<ISpaceshipShooter>()
                 .WithId(SpaceshipType.Player)
                 .To<PlayerSpaceshipShootingReader>()
+                .AsSingle();
+        }
+
+        private void BindEnemySpaceshipContextFields()
+        {
+            Container.Bind<ISpaceshipMover>()
+                .WithId(SpaceshipType.Enemy)
+                .To<EnemySpaceshipMover>()
+                .AsSingle();
+
+            Container.Bind<ISpaceshipShooter>()
+                .WithId(SpaceshipType.Enemy)
+                .To<EnemySpaceshipShooter>() //////////////////////////////////
                 .AsSingle();
         }
     }
