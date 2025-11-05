@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 162096943}
   - component: {fileID: 162096942}
   - component: {fileID: 162096945}
-  - component: {fileID: 162096946}
   - component: {fileID: 162096944}
   m_Layer: 0
   m_Name: SceneContext
@@ -154,7 +153,6 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 162096945}
-  - {fileID: 162096946}
   - {fileID: 162096944}
   _installerPrefabs: []
   _autoRun: 1
@@ -212,18 +210,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4747ff18ed6427d498792752f8777ffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &162096946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 162096941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5322e8233568bf4291a22a17b6abf24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519420028
@@ -476,6 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b855ec688e6f40b489984a0d5267bd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemySpaceshipSpawnInterval: 30
 --- !u!4 &2032720069
 Transform:
   m_ObjectHideFlags: 0

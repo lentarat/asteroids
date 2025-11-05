@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class EnemySpaceshipShooter : ISpaceshipShooter
+namespace Asteroids.Spaceship.Shooting
 {
-    void ISpaceshipShooter.Shoot()
+    public class EnemySpaceshipShooter : ISpaceshipShooter
     {
-        throw new System.NotImplementedException();
-    }
+        void ISpaceshipShooter.Shoot()
+        {
+            throw new System.NotImplementedException();
+        }
 
-    bool ISpaceshipShooter.ShouldShoot()
-    {
-        throw new System.NotImplementedException();
+        bool ISpaceshipShooter.ShouldShoot()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

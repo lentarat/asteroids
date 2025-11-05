@@ -8,6 +8,8 @@ namespace Asteroids.Spaceship
 {
     public class SpaceshipSpawner : MonoBehaviour
     {
+        [SerializeField] private float _enemySpaceshipSpawnInterval;
+
         private SpaceshipFactory _spaceshipFactory;
 
         [Inject]
@@ -32,19 +34,15 @@ namespace Asteroids.Spaceship
             while (true)
             {
                 SpawnEnemySpaceship();
-                await UniTask.WaitForSeconds(0.05f);
+                await UniTask.WaitForSeconds(_enemySpaceshipSpawnInterval);
             }
         }
 
         private void SpawnEnemySpaceship()
         {
-            //SpaceshipContext playerSpaceshipContext = new(playerSpaceshipMovementInputReader);
-            //Spaceship spaceship = _spaceshipFactory.Create(playerSpaceshipContext);
-
             WorldBoundaries worldBoundaries = WorldBoundaryUtils.GetWorldBoundaries(Camera.main);
             Vector2 randomSpawnPosition = WorldBoundaryUtils.GetRandomPositionBeyondBoundaries(worldBoundaries);
             _spaceshipFactory.CreateEnemySpaceship(randomSpawnPosition);
-            //spaceship.transform.position = randomSpawnPosition;
         }
     }
 }
