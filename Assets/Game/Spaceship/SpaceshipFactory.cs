@@ -11,7 +11,7 @@ namespace Asteroids.Spaceship
     {
         private Spaceship _spaceshipPrefab;
         private PlayerInputActions _playerInputActions;
-        private Transform _playerTransform;
+        private Rigidbody2D _playerRigidbody;
 
         public SpaceshipFactory(
             Spaceship spaceshipPrefab,
@@ -33,7 +33,7 @@ namespace Asteroids.Spaceship
             SpaceshipContext spaceshipContext = new(spaceshipMover, spaceshipShooter, color);
             spaceship.InitializeSpaceship(spaceshipContext);
 
-            _playerTransform = spaceship.transform;
+            _playerRigidbody = spaceship.GetComponent<Rigidbody2D>();
 
             return spaceship;
         }
@@ -42,7 +42,8 @@ namespace Asteroids.Spaceship
         {
             Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
 
-            ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(spaceship.transform, _playerTransform);
+            Rigidbody2D spaceshipRigidbody = spaceship.GetComponent<Rigidbody2D>();
+            ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(spaceshipRigidbody, _playerRigidbody);
             ISpaceshipShooter spaceshipShooter = new EnemySpaceshipShooter();
             Color color = Color.red;
 
