@@ -47,40 +47,35 @@ namespace Asteroids.Spaceship.Movement
 
         float ISpaceshipMover.GetTurnDirectionValue()
         {
+            float turnDirectionValue;
             bool hasAccededMaxSpeed = HasAccededMaxSpeed();
 
             if(hasAccededMaxSpeed == false)
             {
                 Vector3 directionToDestination = GetDirectionToDestination();
                 float signedAngleToDirection = Vector2.SignedAngle(directionToDestination, _rigidbody.transform.up);
-                float v = Vector2.Dot(directionToDestination, _rigidbody.transform.up) - 1;
-                v = Mathf.Abs(v);
-                v = Mathf.Clamp01(v);
-                v *= Mathf.Sign(signedAngleToDirection);    
-                Debug.Log(v);
-                return v;
+                
+                turnDirectionValue = Vector2.Dot(directionToDestination, _rigidbody.transform.up) - 1;
+                turnDirectionValue = Mathf.Abs(turnDirectionValue);
+                turnDirectionValue = Mathf.Clamp01(turnDirectionValue);
+                turnDirectionValue *= Mathf.Sign(signedAngleToDirection);  
+                
+                return turnDirectionValue;
             }
 
             Vector3 enemyToPlayerVector = (_playerRigidbody.position - _rigidbody.position).normalized;
             float signedAngleToPlayer = Vector2.SignedAngle(enemyToPlayerVector, _rigidbody.transform.up);
 
-            //Debug.Log(Vector2.Dot(enemyToPlayerVector, _transform.up));
-
-             //   return 0f;
             if (signedAngleToPlayer > 0)
             {
-                return 1f;
+                turnDirectionValue = 1f;
             }
             else
             {
-                return -1f;
+                turnDirectionValue = -1f;
             }
-        }
 
-        private void OnDrawGizmos()
-        {
-            Debug.Log("\t"+ _currentDestinationPosition);
-            Gizmos.DrawSphere(_currentDestinationPosition, 1f);
+            return turnDirectionValue;
         }
 
         private Vector2 GetDirectionToDestination()

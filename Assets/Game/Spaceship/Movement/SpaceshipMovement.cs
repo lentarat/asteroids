@@ -38,39 +38,13 @@ namespace Asteroids.Spaceship.Movement
         private void HandleCurrentAngularVelocity()
         {
             float turnDirectionValue = _spaceshipMover.GetTurnDirectionValue();
-            bool isExceedingMinAngularVelocity = ExceedsMinAngularVelocity();
+            float targetAngularVelocity = turnDirectionValue * _spaceshipMovementSO.MaxAngularSpeed;
 
-            if (turnDirectionValue == 0f && isExceedingMinAngularVelocity)
-            {
-                float angularVelocityOffset = -System.MathF.Sign(_currentAngularVelocity) *
-                    _spaceshipMovementSO.AngularAcceleration * Time.deltaTime;
-                _currentAngularVelocity += angularVelocityOffset;
-
-                isExceedingMinAngularVelocity = ExceedsMinAngularVelocity();
-                if (isExceedingMinAngularVelocity == false)
-                {
-                    _currentAngularVelocity = 0f;
-                }
-            }
-            else
-            {
-                float angularVelocityOffset = System.MathF.Sign(turnDirectionValue) *
-                    _spaceshipMovementSO.AngularAcceleration * Time.deltaTime;
-
-                _currentAngularVelocity += angularVelocityOffset;
-
-                _currentAngularVelocity = Mathf.Clamp(
-                    _currentAngularVelocity,
-                    -_spaceshipMovementSO.MaxAngularSpeed,
-                    _spaceshipMovementSO.MaxAngularSpeed
-                    );
-            }
-        }
-
-        private bool ExceedsMinAngularVelocity()
-        {
-            bool isExceedingMinAngularVelocity = Mathf.Abs(_currentAngularVelocity) > _minAngularVelocity;
-            return isExceedingMinAngularVelocity;
+            _currentAngularVelocity = Mathf.MoveTowards(
+                _currentAngularVelocity,
+                targetAngularVelocity,
+                _spaceshipMovementSO.AngularAcceleration * Time.deltaTime
+                );
         }
 
         private void FixedUpdate()
@@ -83,7 +57,6 @@ namespace Asteroids.Spaceship.Movement
         {
             Vector2 newPosition = _rigidbody.position + _currentVelocity * Time.fixedDeltaTime;
             _rigidbody.MovePosition(newPosition);
-            
         }
 
         private void Rotate()
