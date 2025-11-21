@@ -56,7 +56,6 @@ namespace Asteroids.Spaceship.Movement
                 float signedAngleToDirection = Vector2.SignedAngle(directionToDestination, _rigidbody.transform.up);
                 
                 turnDirectionValue = Vector2.Dot(directionToDestination, _rigidbody.transform.up) - 1;
-                turnDirectionValue = Mathf.Abs(turnDirectionValue);
                 turnDirectionValue = Mathf.Clamp01(turnDirectionValue);
                 turnDirectionValue *= Mathf.Sign(signedAngleToDirection);  
                 
@@ -80,7 +79,7 @@ namespace Asteroids.Spaceship.Movement
 
         private Vector2 GetDirectionToDestination()
         {
-            Vector2 direction = (_currentDestinationPosition - _rigidbody.position).normalized;
+            Vector2 direction = (_playerRigidbody.position - _rigidbody.position).normalized;
             return direction;
         }
 
