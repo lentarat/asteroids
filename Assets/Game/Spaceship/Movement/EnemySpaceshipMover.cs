@@ -11,7 +11,9 @@ namespace Asteroids.Spaceship.Movement
         private float _followPlayerRadius = 2f;
         private float _changeDestinationInterval = 5f;
         private float _maxSpeedSqr = 1f;
-        private Vector2 _currentDestinationPosition;
+        private float _slowTurningDownAngle = 150f;
+        private float _maxRadiusOffsetFromPlayer = 3f;
+        private Vector2 _currentRadiusOffsetFromPlayer;
         private Rigidbody2D _rigidbody;
         private Rigidbody2D _playerRigidbody;
 
@@ -23,19 +25,15 @@ namespace Asteroids.Spaceship.Movement
             _rigidbody = enemyRigidbody;
             _playerRigidbody = playerRigidbody;
 
-            ChangeDestinationLoopAsync().Forget();
+            ChangeDestinationNearPlayerLoopAsync().Forget();
         }
 
-        private async UniTask ChangeDestinationLoopAsync()
+        private async UniTask ChangeDestinationNearPlayerLoopAsync()
         {
-            WorldBoundaries worldBoundaries = WorldBoundaryUtils.GetWorldBoundaries(Camera.main);
-            float xMax = worldBoundaries.RightVector.x;
-            float yMax = worldBoundaries.UpperVector.y;
-            float circleRadius = Mathf.Min(xMax, yMax);
-
             while (true)
             {
-                _currentDestinationPosition = Random.insideUnitCircle * circleRadius;
+                _currentRadiusOffsetFromPlayer = Random.insideUnitCircle * _maxRadiusOffsetFromPlayer;
+
                 await UniTask.WaitForSeconds(_changeDestinationInterval);
             }
         }
@@ -47,39 +45,20 @@ namespace Asteroids.Spaceship.Movement
 
         float ISpaceshipMover.GetTurnDirectionValue()
         {
-            float turnDirectionValue;
-            bool hasAccededMaxSpeed = HasAccededMaxSpeed();
+            Vector3 directionToDestination = GetDirectionToDestination();
+            float signedAngleToDirection = Vector2.SignedAngle(directionToDestination, _rigidbody.transform.up);
 
-            if(hasAccededMaxSpeed == false)
-            {
-                Vector3 directionToDestination = GetDirectionToDestination();
-                float signedAngleToDirection = Vector2.SignedAngle(directionToDestination, _rigidbody.transform.up);
-                
-                turnDirectionValue = Vector2.Dot(directionToDestination, _rigidbody.transform.up) - 1;
-                turnDirectionValue = Mathf.Clamp01(turnDirectionValue);
-                turnDirectionValue *= Mathf.Sign(signedAngleToDirection);  
-                
-                return turnDirectionValue;
-            }
-
-            Vector3 enemyToPlayerVector = (_playerRigidbody.position - _rigidbody.position).normalized;
-            float signedAngleToPlayer = Vector2.SignedAngle(enemyToPlayerVector, _rigidbody.transform.up);
-
-            if (signedAngleToPlayer > 0)
-            {
-                turnDirectionValue = 1f;
-            }
-            else
-            {
-                turnDirectionValue = -1f;
-            }
+            float turnDirectionValue = signedAngleToDirection / _slowTurningDownAngle;
+            turnDirectionValue = Mathf.Clamp(turnDirectionValue, -1f, 1f);
 
             return turnDirectionValue;
         }
 
         private Vector2 GetDirectionToDestination()
         {
-            Vector2 direction = (_playerRigidbody.position - _rigidbody.position).normalized;
+            Vector2 direction = (_playerRigidbody.position - _rigidbody.position).normalized +
+                _currentRadiusOffsetFromPlayer;
+
             return direction;
         }
 

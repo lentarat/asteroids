@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b855ec688e6f40b489984a0d5267bd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySpaceshipSpawnInterval: 30
+  _enemySpaceshipSpawnInterval: 5
 --- !u!4 &2032720069
 Transform:
   m_ObjectHideFlags: 0
