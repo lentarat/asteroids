@@ -9,7 +9,6 @@ namespace Asteroids.Spaceship.Movement
         [SerializeField] private SpaceshipMovementSO _spaceshipMovementSO;
         
         private float _currentAngularVelocity;
-        private float _minAngularVelocity = 5f;
         private Vector2 _currentVelocity;
         private ISpaceshipMover _spaceshipMover;
 
@@ -27,12 +26,25 @@ namespace Asteroids.Spaceship.Movement
         private void HandleCurrentVelocity()
         {
             float throttleValue = _spaceshipMover.GetThrottleValue();
-            if (throttleValue > 0)
+
+            if (throttleValue > 0f)
             {
-                Vector3 velocityOffset =
-                    transform.up * _spaceshipMovementSO.Acceleration * Time.deltaTime;
+                Vector3 velocityOffset = throttleValue * transform.up *
+                    _spaceshipMovementSO.Acceleration * Time.deltaTime;
                 _currentVelocity += new Vector2(velocityOffset.x, velocityOffset.y);
+                
+                bool hasAcceededMaxSpeed = HasAcceededMaxSpeed();
+                if (hasAcceededMaxSpeed)
+                {
+                    _currentVelocity = _currentVelocity.normalized * _spaceshipMovementSO.MaxSpeed;
+                }
             }
+        }
+
+        private bool HasAcceededMaxSpeed()
+        {
+            bool hasAcceededMaxSpeed = _currentVelocity.magnitude > _spaceshipMovementSO.MaxSpeed;
+            return hasAcceededMaxSpeed;
         }
 
         private void HandleCurrentAngularVelocity()

@@ -8,11 +8,11 @@ namespace Asteroids.Spaceship.Movement
 {
     public class EnemySpaceshipMover : ISpaceshipMover
     {
-        private float _followPlayerRadius = 2f;
         private float _changeDestinationInterval = 5f;
         private float _maxSpeedSqr = 1f;
         private float _slowTurningDownAngle = 150f;
-        private float _maxRadiusOffsetFromPlayer = 3f;
+        private float _maxRadiusOffsetFromPlayer = 1.5f;
+        private float _maxForwardToDestinationDot = 0.8f;
         private Vector2 _currentRadiusOffsetFromPlayer;
         private Rigidbody2D _rigidbody;
         private Rigidbody2D _playerRigidbody;
@@ -40,7 +40,20 @@ namespace Asteroids.Spaceship.Movement
 
         float ISpaceshipMover.GetThrottleValue()
         {
-            return 0f;
+            float throttleValue;            
+            Vector3 directionToDestination = GetDirectionToDestination();
+            float forwardToDestinationDot = Vector2.Dot(_rigidbody.transform.up, directionToDestination);
+
+            if (forwardToDestinationDot > _maxForwardToDestinationDot)
+            {
+                throttleValue = 1f;
+            }
+            else
+            {
+                throttleValue = 0f;
+            }
+
+            return throttleValue;
         }
 
         float ISpaceshipMover.GetTurnDirectionValue()
@@ -56,8 +69,8 @@ namespace Asteroids.Spaceship.Movement
 
         private Vector2 GetDirectionToDestination()
         {
-            Vector2 direction = (_playerRigidbody.position - _rigidbody.position).normalized +
-                _currentRadiusOffsetFromPlayer;
+            Vector2 direction = (_playerRigidbody.position + 
+                _currentRadiusOffsetFromPlayer - _rigidbody.position).normalized ;
 
             return direction;
         }
