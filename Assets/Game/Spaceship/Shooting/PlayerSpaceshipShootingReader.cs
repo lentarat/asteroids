@@ -1,17 +1,49 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Asteroids.Spaceship.Shooting
 {
     public class PlayerSpaceshipShootingReader : ISpaceshipShooter
     {
-        void ISpaceshipShooter.Shoot()
+        private bool _isShooting;
+        private PlayerInputActions _playerInputActions;
+
+        public PlayerSpaceshipShootingReader(PlayerInputActions playerInputActions)
         {
-            throw new System.NotImplementedException();
+            _playerInputActions = playerInputActions;
+            SubscribeToShooting();
+        }
+
+        private void SubscribeToShooting()
+        {
+            _playerInputActions.Spaceship.Shoot.started += HandleShootingStarted;
+            _playerInputActions.Spaceship.Shoot.performed += HandleShootingPerformed;
+        }
+
+        ~PlayerSpaceshipShootingReader()
+        {
+            UnsubscribeToShooting();
+        }
+
+        private void UnsubscribeToShooting()
+        {
+            _playerInputActions.Spaceship.Shoot.started -= HandleShootingStarted;
+            _playerInputActions.Spaceship.Shoot.performed -= HandleShootingPerformed;
+        }
+
+        private void HandleShootingStarted(InputAction.CallbackContext context)
+        {
+            _isShooting = true;
+        }
+
+        private void HandleShootingPerformed(InputAction.CallbackContext context)
+        {
+            _isShooting = false;
         }
 
         bool ISpaceshipShooter.ShouldShoot()
         {
-            throw new System.NotImplementedException();
+            return _isShooting;
         }
     }
 }

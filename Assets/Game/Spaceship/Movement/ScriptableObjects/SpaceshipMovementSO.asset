@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SpaceshipMovementSO
   m_EditorClassIdentifier: 
   _acceleration: 10
-  _maxSpeed: 5
+  _maxSpeed: 8
   _angularAcceleration: 2000
   _maxAngularSpeed: 360

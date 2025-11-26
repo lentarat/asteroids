@@ -9,6 +9,7 @@ namespace Asteroids.Spaceship
     public class SpaceshipSpawner : MonoBehaviour
     {
         [SerializeField] private float _enemySpaceshipSpawnInterval;
+        [SerializeField] private Transform _enemySpaceshipsHolder;
 
         private SpaceshipFactory _spaceshipFactory;
 
@@ -42,7 +43,8 @@ namespace Asteroids.Spaceship
         {
             WorldBoundaries worldBoundaries = WorldBoundaryUtils.GetWorldBoundaries(Camera.main);
             Vector2 randomSpawnPosition = WorldBoundaryUtils.GetRandomPositionBeyondBoundaries(worldBoundaries);
-            _spaceshipFactory.CreateEnemySpaceship(randomSpawnPosition);
+            Spaceship enemySpaceship = _spaceshipFactory.CreateEnemySpaceship(randomSpawnPosition);
+            enemySpaceship.transform.parent = _enemySpaceshipsHolder;
         }
     }
 }
