@@ -17,7 +17,7 @@ namespace Asteroids.Spaceship.Shooting
         private void SubscribeToShooting()
         {
             _playerInputActions.Spaceship.Shoot.started += HandleShootingStarted;
-            _playerInputActions.Spaceship.Shoot.performed += HandleShootingPerformed;
+            _playerInputActions.Spaceship.Shoot.canceled += HandleShootingCanceled;
         }
 
         ~PlayerSpaceshipShootingReader()
@@ -28,7 +28,7 @@ namespace Asteroids.Spaceship.Shooting
         private void UnsubscribeToShooting()
         {
             _playerInputActions.Spaceship.Shoot.started -= HandleShootingStarted;
-            _playerInputActions.Spaceship.Shoot.performed -= HandleShootingPerformed;
+            _playerInputActions.Spaceship.Shoot.canceled -= HandleShootingCanceled;
         }
 
         private void HandleShootingStarted(InputAction.CallbackContext context)
@@ -36,7 +36,7 @@ namespace Asteroids.Spaceship.Shooting
             _isShooting = true;
         }
 
-        private void HandleShootingPerformed(InputAction.CallbackContext context)
+        private void HandleShootingCanceled(InputAction.CallbackContext context)
         {
             _isShooting = false;
         }

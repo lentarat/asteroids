@@ -2,6 +2,7 @@ using Asteroids.Spaceship;
 using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
 using TMPro;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using Zenject;
 
@@ -25,11 +26,11 @@ namespace Asteroids.Spaceship
         public Spaceship CreatePlayerSpaceship()
         {
             Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
+            spaceship.name = "Player" + spaceship.name;
 
             ISpaceshipMover spaceshipMover = new PlayerSpaceshipMovementInputReader(_playerInputActions);
             ISpaceshipShooter spaceshipShooter = new PlayerSpaceshipShootingReader(_playerInputActions);
             Color color = Color.green;
-
             SpaceshipContext spaceshipContext = new(spaceshipMover, spaceshipShooter, color);
             spaceship.InitializeSpaceship(spaceshipContext);
 
@@ -41,14 +42,15 @@ namespace Asteroids.Spaceship
         public Spaceship CreateEnemySpaceship(Vector2 position)
         {
             Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
+            spaceship.name = "Enemy" + spaceship.name;
 
             Rigidbody2D spaceshipRigidbody = spaceship.GetComponent<Rigidbody2D>();
             ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(spaceshipRigidbody, _playerRigidbody);
             ISpaceshipShooter spaceshipShooter = new EnemySpaceshipShooter();
             Color color = Color.red;
-
             SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, color);
             spaceship.InitializeSpaceship(spaceshipContext);
+
             spaceship.transform.position = position;
 
             return spaceship;
