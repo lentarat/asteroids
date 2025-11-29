@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class SpaceshipShooting : MonoBehaviour
 {
+    [SerializeField] private SpaceshipShootingSO _spaceshipShootingSO;
+    
     private ISpaceshipShooter _spaceshipShooter;
-    private SpaceshipShootingSO _spaceshipShootingSO;
 
-    public void Init(ISpaceshipShooter spaceshipShooter, SpaceshipShootingSO spaceshipShootingSO)
+    public void Init(ISpaceshipShooter spaceshipShooter)
     { 
         _spaceshipShooter = spaceshipShooter;
-        _spaceshipShootingSO = spaceshipShootingSO;
     }
 
     private void Update()
@@ -23,6 +23,6 @@ public class SpaceshipShooting : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("Shooting");
+        //Instantiate( _spaceshipShootingSO.ProjectileSprite)
     }
 }

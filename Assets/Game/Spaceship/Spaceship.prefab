@@ -325,6 +325,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -346,6 +348,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -399,7 +402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d1c5f578aed24489efd6f359ebd9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spaceshipMovementSO: {fileID: 11400000, guid: e328619d8a2bff14788c66238572cb26, type: 2}
   _spaceshipMovement: {fileID: 8012553604298350159}
   _spaceshipShooting: {fileID: 4297812049980498182}
 --- !u!114 &8012553604298350159
@@ -415,6 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 6017686088791460897}
+  _spaceshipMovementSO: {fileID: 11400000, guid: e328619d8a2bff14788c66238572cb26, type: 2}
 --- !u!114 &4297812049980498182
 MonoBehaviour:
   m_ObjectHideFlags: 0
