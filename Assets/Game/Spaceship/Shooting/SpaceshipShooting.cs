@@ -4,7 +4,9 @@ using UnityEngine;
 public class SpaceshipShooting : MonoBehaviour
 {
     [SerializeField] private SpaceshipShootingSO _spaceshipShootingSO;
-    
+    [SerializeField] private SpaceshipProjectile _spaceshipBullet;
+
+    private float _lastShotTime;
     private ISpaceshipShooter _spaceshipShooter;
 
     public void Init(ISpaceshipShooter spaceshipShooter)
@@ -23,6 +25,22 @@ public class SpaceshipShooting : MonoBehaviour
 
     private void Shoot()
     {
-        //Instantiate( _spaceshipShootingSO.ProjectileSprite)
+        bool hasShootingIntervalPassed = HasShootingIntervalPassed();
+        if(hasShootingIntervalPassed)
+        {
+            SpaceshipProjectile spaceshipProjectile = Instantiate(_spaceshipBullet);
+            Sprite sprite = _spaceshipShootingSO.ProjectileSprite;
+            Vector2 direction = transform.up;
+            float speed = _spaceshipShootingSO.
+
+            _lastShotTime = Time.time;
+        }
+    }
+
+    private bool HasShootingIntervalPassed()
+    {
+        bool hasShootingIntervalPassed =
+            Time.time > _lastShotTime + _spaceshipShootingSO.Interval;
+        return hasShootingIntervalPassed;
     }
 }
