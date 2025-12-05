@@ -1,10 +1,11 @@
 using Asteroids.Spaceship.Movement;
+using Asteroids.Spaceship.Shooting;
 using UnityEngine;
 using Zenject;
 
 namespace Asteroids.Spaceship
 {
-    public class Spaceship : MonoBehaviour
+    public class Spaceship : MonoBehaviour, IDamageable
     {
         [SerializeField] private SpaceshipMovement _spaceshipMovement;
         [SerializeField] private SpaceshipShooting _spaceshipShooting;
@@ -20,7 +21,12 @@ namespace Asteroids.Spaceship
             spriteRenderer.color = spaceshipContext.Color;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            Destroy(gameObject);
+        }
+
+        void IDamageable.ApplyDamage(float damage)
         {
             Destroy(gameObject);
         }

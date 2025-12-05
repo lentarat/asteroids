@@ -1,46 +1,56 @@
 using Asteroids.Spaceship.Movement;
+using Asteroids.Spaceship.Shooting;
 using UnityEngine;
 
-public class SpaceshipShooting : MonoBehaviour
+namespace Asteroids.Spaceship.Shooting
 {
-    [SerializeField] private SpaceshipShootingSO _spaceshipShootingSO;
-    [SerializeField] private SpaceshipProjectile _spaceshipBullet;
-
-    private float _lastShotTime;
-    private ISpaceshipShooter _spaceshipShooter;
-
-    public void Init(ISpaceshipShooter spaceshipShooter)
-    { 
-        _spaceshipShooter = spaceshipShooter;
-    }
-
-    private void Update()
+    public class SpaceshipShooting : MonoBehaviour
     {
-        bool shouldShoot = _spaceshipShooter.ShouldShoot();
-        if (shouldShoot)
+        [SerializeField] private SpaceshipWeaponSO _spaceshipWeaponSO;
+        [SerializeField] private SpaceshipProjectileSO _spaceshipProjectileSO;
+        [SerializeField] private SpaceshipProjectile _spaceshipBullet;
+
+        private float _lastShotTime;
+        private ISpaceshipShooter _spaceshipShooter;
+
+        public void Init(ISpaceshipShooter spaceshipShooter)
         {
-            Shoot();
+            _spaceshipShooter = spaceshipShooter;
         }
-    }
 
-    private void Shoot()
-    {
-        bool hasShootingIntervalPassed = HasShootingIntervalPassed();
-        if(hasShootingIntervalPassed)
+        private void Update()
         {
-            SpaceshipProjectile spaceshipProjectile = Instantiate(_spaceshipBullet);
-            Sprite sprite = _spaceshipShootingSO.ProjectileSprite;
-            Vector2 direction = transform.up;
-            float speed = _spaceshipShootingSO.
-
-            _lastShotTime = Time.time;
+            bool shouldShoot = _spaceshipShooter.ShouldShoot();
+            if (shouldShoot)
+            {
+                Shoot();
+            }
         }
-    }
 
-    private bool HasShootingIntervalPassed()
-    {
-        bool hasShootingIntervalPassed =
-            Time.time > _lastShotTime + _spaceshipShootingSO.Interval;
-        return hasShootingIntervalPassed;
+        private void Shoot()
+        {
+            bool hasShootingIntervalPassed = HasShootingIntervalPassed();
+            if (hasShootingIntervalPassed)
+            {
+                SpaceshipProjectile spaceshipProjectile = 
+                    Instantiate(_spaceshipBullet, transform.position, Quaternion.identity);
+
+                Sprite sprite = _spaceshipProjectileSO.ProjectileSprite;
+                Vector2 direction = transform.up;
+                float speed = _spaceshipWeaponSO.ProjectileSpeed;
+                float damage = _spaceshipProjectileSO.Damage;
+
+                spaceshipProjectile.Init(sprite, direction, speed, damage);
+
+                _lastShotTime = Time.time;
+            }
+        }
+
+        private bool HasShootingIntervalPassed()
+        {
+            bool hasShootingIntervalPassed =
+                Time.time > _lastShotTime + _spaceshipWeaponSO.Interval;
+            return hasShootingIntervalPassed;
+        }
     }
 }

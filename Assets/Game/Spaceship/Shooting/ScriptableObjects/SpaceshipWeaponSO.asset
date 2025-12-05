@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d0893f80403b414e877d0d49f9c9a97, type: 3}
-  m_Name: SpaceshipMovementSO
-  m_EditorClassIdentifier: 
-  _acceleration: 10
-  _maxSpeed: 6
-  _angularAcceleration: 2000
-  _maxAngularSpeed: 360
+  m_Script: {fileID: 11500000, guid: ed2023e570fb3fe47a6794f3f71556e8, type: 3}
+  m_Name: SpaceshipWeaponSO
+  m_EditorClassIdentifier: Assembly-CSharp::Asteroids.Spaceship.Shooting.SpaceshipWeaponSO
+  _interval: 0.2
+  _projectileSpeed: 8
+  _projectileLifetime: 3
