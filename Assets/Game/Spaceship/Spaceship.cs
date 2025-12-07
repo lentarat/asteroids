@@ -15,15 +15,22 @@ namespace Asteroids.Spaceship
             ISpaceshipMover spaceshipMover = spaceshipContext.SpaceshipMover;
             ISpaceshipShooter spaceshipShooter = spaceshipContext.SpaceshipShooter;
             _spaceshipMovement.Init(spaceshipMover);
-            _spaceshipShooting.Init(spaceshipShooter);
+            _spaceshipShooting.Init(spaceshipShooter, this);
 
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = spaceshipContext.Color;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            Destroy(gameObject);
+            Transform rootTransform = collider.transform.root;
+            bool isCollidingWithDamageable =
+                rootTransform.TryGetComponent<IDamageable>(out IDamageable damageable);
+
+            if (isCollidingWithDamageable)
+            {
+                Destroy(gameObject);
+            }
         }
 
         void IDamageable.ApplyDamage(float damage)

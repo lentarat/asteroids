@@ -9,21 +9,32 @@ namespace Asteroids.Spaceship.Shooting
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
         private float _damage;
+        public Spaceship _parentSpaceship;
 
-        public void Init(Sprite sprite, Vector2 direction, float speed, float damage)
+        public void Init(
+            Spaceship parentSpaceship,
+            Sprite sprite,
+            Vector2 direction,
+            float speed,
+            float damage
+            )
         {
+            _parentSpaceship = parentSpaceship;
             _spriteRenderer.sprite = sprite;
             transform.up = direction;
             _rigidbody.linearVelocity = direction * speed;
             _damage = damage;
         }
 
-        private void OnTriggerEnter2D(Collider2D collider2D)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
+            Transform rootTransform = collider.transform.root;
             bool isCollidingWithDamageable =
-                collider2D.TryGetComponent<IDamageable>(out IDamageable damageable);
+                rootTransform.TryGetComponent<IDamageable>(out IDamageable damageable);
 
-            if (isCollidingWithDamageable)
+            Spaceship spaceship = damageable as Spaceship;
+
+            if (isCollidingWithDamageable && spaceship != _parentSpaceship)
             {
                 damageable.ApplyDamage(_damage);
             }

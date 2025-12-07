@@ -11,11 +11,13 @@ namespace Asteroids.Spaceship.Shooting
         [SerializeField] private SpaceshipProjectile _spaceshipBullet;
 
         private float _lastShotTime;
+        private Spaceship _parentSpaceship;
         private ISpaceshipShooter _spaceshipShooter;
 
-        public void Init(ISpaceshipShooter spaceshipShooter)
+        public void Init(ISpaceshipShooter spaceshipShooter, Spaceship parentSpaceship)
         {
             _spaceshipShooter = spaceshipShooter;
+            _parentSpaceship = parentSpaceship;
         }
 
         private void Update()
@@ -40,7 +42,7 @@ namespace Asteroids.Spaceship.Shooting
                 float speed = _spaceshipWeaponSO.ProjectileSpeed;
                 float damage = _spaceshipProjectileSO.Damage;
 
-                spaceshipProjectile.Init(sprite, direction, speed, damage);
+                spaceshipProjectile.Init(_parentSpaceship, sprite, direction, speed, damage);
 
                 _lastShotTime = Time.time;
             }
