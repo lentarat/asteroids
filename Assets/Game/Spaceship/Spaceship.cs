@@ -1,5 +1,6 @@
 using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,8 @@ namespace Asteroids.Spaceship
     {
         [SerializeField] private SpaceshipMovement _spaceshipMovement;
         [SerializeField] private SpaceshipShooting _spaceshipShooting;
+
+        public event Action OnDestroyed;
 
         public void InitializeSpaceship(SpaceshipContext spaceshipContext)
         {
@@ -23,19 +26,23 @@ namespace Asteroids.Spaceship
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            Transform rootTransform = collider.transform.root;
-            bool isCollidingWithDamageable =
-                rootTransform.TryGetComponent<IDamageable>(out IDamageable damageable);
+            IDamageable damageable = collider.GetComponentInParent<IDamageable>();
 
-            if (isCollidingWithDamageable)
+            if (damageable != null)
             {
-                Destroy(gameObject);
+                OnDestroyed?.Invoke();
             }
         }
 
+        //private void DestroySpaceship()
+        //{
+        //    OnDestroyed?.Invoke();
+        //    Destroy(gameObject);
+        //}
+
         void IDamageable.ApplyDamage(float damage)
         {
-            Destroy(gameObject);
+            OnDestroyed?.Invoke();
         }
     }
 }

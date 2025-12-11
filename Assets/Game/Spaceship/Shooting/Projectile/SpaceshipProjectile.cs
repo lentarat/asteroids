@@ -28,13 +28,10 @@ namespace Asteroids.Spaceship.Shooting
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            Transform rootTransform = collider.transform.root;
-            bool isCollidingWithDamageable =
-                rootTransform.TryGetComponent<IDamageable>(out IDamageable damageable);
-
+            IDamageable damageable = collider.GetComponentInParent<IDamageable>();
             Spaceship spaceship = damageable as Spaceship;
 
-            if (isCollidingWithDamageable && spaceship != _parentSpaceship)
+            if (damageable != null && spaceship != _parentSpaceship)
             {
                 damageable.ApplyDamage(_damage);
             }

@@ -56,34 +56,4 @@ namespace Asteroids.Spaceship
             return spaceship;
         }
     }
-
-    //public class SpaceshipFactory
-    //{
-    //    private Spaceship _spaceshipPrefab;
-    //    private SpaceshipContext _playerSpaceshipContext;
-    //    private SpaceshipContext _enemySpaceshipContext;
-
-    //    public SpaceshipFactory(
-    //        Spaceship spaceshipPrefab,
-    //        [Inject(Id = SpaceshipType.Player)] SpaceshipContext playerSpaceshipContext,
-    //        [Inject(Id = SpaceshipType.Enemy)] SpaceshipContext enemySpaceshipContext)
-    //    {
-    //        _spaceshipPrefab = spaceshipPrefab;    
-    //        _playerSpaceshipContext = playerSpaceshipContext;
-    //        _enemySpaceshipContext = enemySpaceshipContext;
-    //    }
-
-    //    public void CreatePlayerSpaceship()
-    //    {
-    //        Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
-    //        spaceship.InitializeSpaceship(_playerSpaceshipContext);   
-    //    }
-
-    //    public void CreateEnemySpaceship(Vector2 position)
-    //    {
-    //        Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
-    //        spaceship.InitializeSpaceship(_enemySpaceshipContext);
-    //        spaceship.transform.position = position;
-    //    }
-    //}
 }
