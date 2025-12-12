@@ -1,3 +1,4 @@
+using Asteroids.Signals;
 using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
 using System;
@@ -11,9 +12,9 @@ namespace Asteroids.Spaceship
         [SerializeField] private SpaceshipMovement _spaceshipMovement;
         [SerializeField] private SpaceshipShooting _spaceshipShooting;
 
-        public event Action OnDestroyed;
+        private SignalBus _signalBus;
 
-        public void InitializeSpaceship(SpaceshipContext spaceshipContext)
+        public void InitializeSpaceship(SpaceshipContext spaceshipContext, SignalBus signalBus)
         {
             ISpaceshipMover spaceshipMover = spaceshipContext.SpaceshipMover;
             ISpaceshipShooter spaceshipShooter = spaceshipContext.SpaceshipShooter;
@@ -22,6 +23,8 @@ namespace Asteroids.Spaceship
 
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = spaceshipContext.Color;
+
+            _signalBus = signalBus;
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
@@ -30,8 +33,14 @@ namespace Asteroids.Spaceship
 
             if (damageable != null)
             {
-                OnDestroyed?.Invoke();
+                DestroySpaceshipSignal();
             }
+        }
+
+        private void DestroySpaceshipSignal()
+        {
+            SpaceshipDestroyedSignal spaceshipDestroyedSignal = new();
+            _signalBus.Fire(spaceshipDestroyedSignal);
         }
 
         //private void DestroySpaceship()
@@ -42,7 +51,7 @@ namespace Asteroids.Spaceship
 
         void IDamageable.ApplyDamage(float damage)
         {
-            OnDestroyed?.Invoke();
+            DestroySpaceshipSignal();
         }
     }
 }

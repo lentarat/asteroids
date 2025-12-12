@@ -1,6 +1,7 @@
 using UnityEngine;
 using Asteroids.Spaceship;
 using Cysharp.Threading.Tasks;
+using Zenject;
 
 namespace Asteroids.Signals.Handlers
 {
@@ -8,8 +9,20 @@ namespace Asteroids.Signals.Handlers
     {
         private int _respawnTimeMS = 3000;
         private Spaceship.Spaceship _playerSpaceship;
+        private SignalBus _signalBus;
 
-        public void HandlePlayerDestroyed(PlayerDestroyedSignal playerDestroyedSignal)
+        public PlayerSpaceshipRespawner(SignalBus signalBus)
+        {
+            _signalBus = signalBus;    
+
+        }
+
+        private void SubscribeToSpaceshipDestroyed()
+        { 
+        
+        }
+
+        public void HandlePlayerDestroyed(SpaceshipDestroyedSignal playerDestroyedSignal)
         { 
             _playerSpaceship = playerDestroyedSignal.PlayerSpaceship;
             _playerSpaceship.gameObject.SetActive(false);
