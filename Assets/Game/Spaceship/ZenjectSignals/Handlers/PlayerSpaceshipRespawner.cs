@@ -13,19 +13,20 @@ namespace Asteroids.Signals.Handlers
 
         public PlayerSpaceshipRespawner(SignalBus signalBus)
         {
-            _signalBus = signalBus;    
-
+            _signalBus = signalBus;
+            SubscribeToSpaceshipDestroyed();
         }
 
         private void SubscribeToSpaceshipDestroyed()
-        { 
-        
+        {
+            _signalBus.Subscribe<SpaceshipDestroyedSignal>(HandlePlayerDestroyed);
         }
 
         public void HandlePlayerDestroyed(SpaceshipDestroyedSignal playerDestroyedSignal)
         { 
             _playerSpaceship = playerDestroyedSignal.PlayerSpaceship;
             _playerSpaceship.gameObject.SetActive(false);
+            RespawnPlayerAsync().Forget();
         }
 
         private async UniTask RespawnPlayerAsync()
@@ -34,6 +35,16 @@ namespace Asteroids.Signals.Handlers
 
             _playerSpaceship.transform.position = Vector3.zero;
             _playerSpaceship.gameObject.SetActive(true);
+        }
+
+        ~PlayerSpaceshipRespawner()
+        {
+            UnsubscribeToSpaceshipDestroyed();
+        }
+
+        private void UnsubscribeToSpaceshipDestroyed()
+        {
+            _signalBus.Unsubscribe<SpaceshipDestroyedSignal>(HandlePlayerDestroyed);
         }
     }
 }
