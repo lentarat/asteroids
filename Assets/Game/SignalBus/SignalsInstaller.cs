@@ -3,7 +3,7 @@ using Asteroids.Signals.Handlers;
 using UnityEngine;
 using Zenject;
 
-public class SignalBusInstaller : MonoInstaller
+public class SignalsInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {

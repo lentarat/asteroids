@@ -8,7 +8,6 @@ namespace Asteroids.Installers
     public class SpaceshipSpawnerInstaller : MonoInstaller
     {
         [SerializeField] private Spaceship.Spaceship _spaceshipPrefab;
-        [SerializeField] private Transform _spaceshipParent;
         
         public override void InstallBindings()
         {
@@ -56,15 +55,6 @@ namespace Asteroids.Installers
             ISpaceshipShooter spaceshipShooter = Container.ResolveId<ISpaceshipShooter>(SpaceshipType.Enemy);
             SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, Color.red);
             return spaceshipContext;
-        }
-
-        private SpaceshipContext BuildSpaceshipContext()
-        {
-            //ISpaceshipMover spaceshipMover =
-
-            //SpaceshipContext spaceshipContext = new(spaceshipMover, spaceshipShooter, color);
-            //return spaceshipContext;
-            return default;
         }
     }
 }

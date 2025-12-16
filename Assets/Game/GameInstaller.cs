@@ -7,7 +7,13 @@ namespace Asteroids.Installers
     {
         public override void InstallBindings()
         {
+            BindSignalBus();
             BindPlayerInputActions();
+        }
+
+        private void BindSignalBus()
+        {
+            SignalBusInstaller.Install(Container);
         }
 
         private void BindPlayerInputActions()

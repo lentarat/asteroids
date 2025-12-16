@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 162096942}
   - component: {fileID: 162096945}
   - component: {fileID: 162096944}
+  - component: {fileID: 162096946}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -185,6 +186,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 162096945}
   - {fileID: 162096944}
+  - {fileID: 162096946}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -230,7 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spaceshipPrefab: {fileID: 5754974008639930870, guid: f5904537219ffb44b99600494d147697, type: 3}
-  _spaceshipParent: {fileID: 0}
 --- !u!114 &162096945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +244,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4747ff18ed6427d498792752f8777ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &162096946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162096941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5db6c4b397f0804f9557ad01f849d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SignalsInstaller
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +508,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemySpaceshipSpawnInterval: 5
   _enemySpaceshipsHolder: {fileID: 18781777}
+  _playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &2032720069
 Transform:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ namespace Asteroids.Spaceship
         private SignalBus _signalBus;
         private Rigidbody2D _playerRigidbody;
 
+        [Inject]
         public SpaceshipFactory(
             Spaceship spaceshipPrefab,
             PlayerInputActions playerInputActions,
