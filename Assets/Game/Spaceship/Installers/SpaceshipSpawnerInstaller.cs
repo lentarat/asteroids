@@ -12,7 +12,6 @@ namespace Asteroids.Installers
         public override void InstallBindings()
         {
             BindSpaceship();
-            BindSpaceshipContexts();
             BindFactory();
         }
 
@@ -23,38 +22,38 @@ namespace Asteroids.Installers
                 .AsSingle();
         }
 
-        private void BindSpaceshipContexts()
-        {
-            Container.Bind<SpaceshipContext>()
-                    .WithId(SpaceshipType.Player)
-                    .FromMethod(GetPlayerSpaceshipContext)
-                    .AsCached();
-
-            Container.Bind<SpaceshipContext>()
-                    .WithId(SpaceshipType.Enemy)
-                    .FromMethod(GetEnemySpaceshipContext)
-                    .AsCached();
-        }
-
         private void BindFactory()
         {
             Container.Bind<SpaceshipFactory>().AsSingle();
         }
 
-        private SpaceshipContext GetPlayerSpaceshipContext()
-        {
-            ISpaceshipMover spaceshipMover = Container.ResolveId<ISpaceshipMover>(SpaceshipType.Player);
-            ISpaceshipShooter spaceshipShooter = Container.ResolveId<ISpaceshipShooter>(SpaceshipType.Player);
-            SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, Color.green);
-            return spaceshipContext;
-        }
+        //private void BindSpaceshipContexts()
+        //{
+        //    Container.Bind<SpaceshipContext>()
+        //            .WithId(SpaceshipType.Player)
+        //            .FromMethod(GetPlayerSpaceshipContext)
+        //            .AsCached();
 
-        private SpaceshipContext GetEnemySpaceshipContext()
-        { 
-            ISpaceshipMover spaceshipMover = Container.ResolveId<ISpaceshipMover>(SpaceshipType.Enemy);
-            ISpaceshipShooter spaceshipShooter = Container.ResolveId<ISpaceshipShooter>(SpaceshipType.Enemy);
-            SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, Color.red);
-            return spaceshipContext;
-        }
+        //    Container.Bind<SpaceshipContext>()
+        //            .WithId(SpaceshipType.Enemy)
+        //            .FromMethod(GetEnemySpaceshipContext)
+        //            .AsCached();
+        //}
+
+        //private SpaceshipContext GetPlayerSpaceshipContext()
+        //{
+        //    ISpaceshipMover spaceshipMover = Container.ResolveId<ISpaceshipMover>(SpaceshipType.Player);
+        //    ISpaceshipShooter spaceshipShooter = Container.ResolveId<ISpaceshipShooter>(SpaceshipType.Player);
+        //    SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, Color.green);
+        //    return spaceshipContext;
+        //}
+
+        //private SpaceshipContext GetEnemySpaceshipContext()
+        //{ 
+        //    ISpaceshipMover spaceshipMover = Container.ResolveId<ISpaceshipMover>(SpaceshipType.Enemy);
+        //    ISpaceshipShooter spaceshipShooter = Container.ResolveId<ISpaceshipShooter>(SpaceshipType.Enemy);
+        //    SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, Color.red);
+        //    return spaceshipContext;
+        //}
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using Asteroids.Spaceship;
 using Cysharp.Threading.Tasks;
 using Zenject;
+using Asteroids.Spaceship.Movement;
 
 namespace Asteroids.Signals.Handlers
 {
@@ -22,10 +23,20 @@ namespace Asteroids.Signals.Handlers
             _signalBus.Subscribe<SpaceshipDestroyedSignal>(HandlePlayerDestroyed);
         }
 
-        public void HandlePlayerDestroyed(SpaceshipDestroyedSignal playerDestroyedSignal)
-        { 
-            _playerSpaceship = playerDestroyedSignal.PlayerSpaceship;
+        public void HandlePlayerDestroyed(SpaceshipDestroyedSignal spaceshipDestroyedSignal)
+        {
+            SpaceshipType spaceshipType = spaceshipDestroyedSignal.Spaceship.SpaceshipType;
+            if (spaceshipType != SpaceshipType.Player)
+            {
+                return;
+            }
+
+            _playerSpaceship = spaceshipDestroyedSignal.Spaceship;
             _playerSpaceship.gameObject.SetActive(false);
+
+            SpaceshipMovement playerSpaceshipMovement = _playerSpaceship.SpaceshipMovement;
+            playerSpaceshipMovement.SetToDefaultRigidbodyProperties();
+
             RespawnPlayerAsync().Forget();
         }
 

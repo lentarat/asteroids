@@ -9,13 +9,17 @@ namespace Asteroids.Spaceship
 {
     public class Spaceship : MonoBehaviour, IDamageable
     {
-        [SerializeField] private SpaceshipMovement _spaceshipMovement;
         [SerializeField] private SpaceshipShooting _spaceshipShooting;
+        [SerializeField] private SpaceshipMovement _spaceshipMovement;
+        public SpaceshipMovement SpaceshipMovement => _spaceshipMovement;
 
+        public SpaceshipType SpaceshipType { get; private set; }
         private SignalBus _signalBus;
 
         public void InitializeSpaceship(SpaceshipContext spaceshipContext, SignalBus signalBus)
         {
+            SpaceshipType = spaceshipContext.SpaceshipType;
+
             ISpaceshipMover spaceshipMover = spaceshipContext.SpaceshipMover;
             ISpaceshipShooter spaceshipShooter = spaceshipContext.SpaceshipShooter;
             _spaceshipMovement.Init(spaceshipMover);
@@ -29,7 +33,7 @@ namespace Asteroids.Spaceship
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            IDamageable damageable = collider.GetComponentInParent<IDamageable>();
+            IDamageable damageable = collider.GetComponentInParent<IDamageable>(true);
 
             if (damageable != null)
             {
@@ -39,15 +43,9 @@ namespace Asteroids.Spaceship
 
         private void DestroySpaceshipSignal()
         {
-            SpaceshipDestroyedSignal spaceshipDestroyedSignal = new();
+            SpaceshipDestroyedSignal spaceshipDestroyedSignal = new(this);
             _signalBus.Fire(spaceshipDestroyedSignal);
         }
-
-        //private void DestroySpaceship()
-        //{
-        //    OnDestroyed?.Invoke();
-        //    Destroy(gameObject);
-        //}
 
         void IDamageable.ApplyDamage(float damage)
         {

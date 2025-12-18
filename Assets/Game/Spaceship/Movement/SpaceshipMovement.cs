@@ -17,6 +17,12 @@ namespace Asteroids.Spaceship.Movement
             _spaceshipMover = spaceshipMover;
         }
 
+        public void SetToDefaultRigidbodyProperties()
+        {
+            _rigidbody.position = Vector2.zero;
+            _rigidbody.linearVelocity = Vector2.zero;
+        }
+
         private void Update()
         {
             HandleCurrentVelocity();

@@ -2,8 +2,13 @@ using UnityEngine;
 
 namespace Asteroids.Signals
 {
-    public class SpaceshipDestroyedSignal
+    public struct SpaceshipDestroyedSignal
     {
-        public Spaceship.Spaceship PlayerSpaceship { get; set; }
+        public Spaceship.Spaceship Spaceship { get; private set; }
+
+        public SpaceshipDestroyedSignal(Spaceship.Spaceship spaceship)
+        {
+            Spaceship = spaceship;
+        }
     }
 }
