@@ -402,8 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d1c5f578aed24489efd6f359ebd9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spaceshipMovement: {fileID: 8012553604298350159}
   _spaceshipShooting: {fileID: 4297812049980498182}
+  _spaceshipMovement: {fileID: 8012553604298350159}
 --- !u!114 &8012553604298350159
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,6 @@ namespace Asteroids.Spaceship
     {
         [SerializeField] private SpaceshipShooting _spaceshipShooting;
         [SerializeField] private SpaceshipMovement _spaceshipMovement;
-        public SpaceshipMovement SpaceshipMovement => _spaceshipMovement;
 
         public SpaceshipType SpaceshipType { get; private set; }
         private SignalBus _signalBus;
@@ -29,6 +28,17 @@ namespace Asteroids.Spaceship
             spriteRenderer.color = spaceshipContext.Color;
 
             _signalBus = signalBus;
+        }
+
+        public void HideSpaceship()
+        { 
+            gameObject.SetActive(false);
+        }
+
+        public void RequestRespawn()
+        {
+            _spaceshipMovement.SetToDefaultRigidbodyProperties();
+            gameObject.SetActive(true);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)

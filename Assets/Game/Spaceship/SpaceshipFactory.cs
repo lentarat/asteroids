@@ -32,10 +32,11 @@ namespace Asteroids.Spaceship
             Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
             spaceship.name = "Player" + spaceship.name;
 
+            SpaceshipType spaceshipType = SpaceshipType.Player;
             ISpaceshipMover spaceshipMover = new PlayerSpaceshipMovementInputReader(_playerInputActions);
             ISpaceshipShooter spaceshipShooter = new PlayerSpaceshipShootingReader(_playerInputActions);
             Color color = Color.green;
-            SpaceshipContext spaceshipContext = new(spaceshipMover, spaceshipShooter, color);
+            SpaceshipContext spaceshipContext = new(spaceshipType, spaceshipMover, spaceshipShooter, color);
             spaceship.InitializeSpaceship(spaceshipContext, _signalBus);
 
             _playerRigidbody = spaceship.GetComponent<Rigidbody2D>();
@@ -48,11 +49,12 @@ namespace Asteroids.Spaceship
             Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
             spaceship.name = "Enemy" + spaceship.name;
 
+            SpaceshipType spaceshipType = SpaceshipType.Enemy;
             Rigidbody2D spaceshipRigidbody = spaceship.GetComponent<Rigidbody2D>();
             ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(spaceshipRigidbody, _playerRigidbody);
             ISpaceshipShooter spaceshipShooter = new EnemySpaceshipShooter();
             Color color = Color.red;
-            SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipMover, spaceshipShooter, color);
+            SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipType,spaceshipMover, spaceshipShooter, color);
             spaceship.InitializeSpaceship(spaceshipContext, _signalBus);
 
             spaceship.transform.position = position;
