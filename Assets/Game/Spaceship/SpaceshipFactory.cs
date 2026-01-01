@@ -4,7 +4,6 @@ using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
 using UnityEngine;
 using Zenject;
-using Zenject.SpaceFighter;
 
 namespace Asteroids.Spaceship
 {
@@ -55,11 +54,11 @@ namespace Asteroids.Spaceship
             Rigidbody2D spaceshipRigidbody = spaceship.GetComponent<Rigidbody2D>();
             ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(spaceshipRigidbody, _playerRigidbody);
             ISpaceshipShooter spaceshipShooter = new EnemySpaceshipShooter();
-            //IDeathHandler 
+            IDeathHandler deathHandler = new EnemyDeathHandler();
             Color color = Color.red;
-            //SpaceshipContext spaceshipContext =
-            //    new SpaceshipContext(spaceshipType,spaceshipMover, spaceshipShooter, color);
-            //spaceship.InitializeSpaceship(spaceshipContext, _signalBus);
+            SpaceshipContext spaceshipContext =
+                new SpaceshipContext(spaceshipType,spaceshipMover, spaceshipShooter, deathHandler, color);
+            spaceship.InitializeSpaceship(spaceshipContext);
 
             spaceship.transform.position = position;
 

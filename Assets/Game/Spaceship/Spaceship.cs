@@ -32,15 +32,14 @@ namespace Asteroids.Spaceship
             _deathHandler = spaceshipContext.DeathHandler;
         }
 
-        public void DisableGameObject()
+        public void SetActive(bool isActive)
         { 
-            gameObject.SetActive(false);
+            gameObject.SetActive(isActive);
         }
 
-        public void RequestRespawn()
+        public void ResetRigidbody()
         {
-            _spaceshipMovement.SetToDefaultRigidbodyProperties();
-            gameObject.SetActive(true);
+            _spaceshipMovement.ResetRigidbody();
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
@@ -55,7 +54,7 @@ namespace Asteroids.Spaceship
 
         private void HandleDeath()
         {
-            _deathHandler.HandleDeath();
+            _deathHandler.HandleDeath(this);
         }
 
         void IDamageable.ApplyDamage(float damage)

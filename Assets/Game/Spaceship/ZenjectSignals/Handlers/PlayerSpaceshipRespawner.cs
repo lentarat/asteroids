@@ -32,7 +32,7 @@ namespace Asteroids.Signals.Handlers
             }
 
             _playerSpaceship = spaceshipDestroyedSignal.Spaceship;
-            _playerSpaceship.DisableGameObject();
+            _playerSpaceship.SetActive(false);
 
             RespawnPlayerAsync().Forget();
         }
@@ -40,7 +40,8 @@ namespace Asteroids.Signals.Handlers
         private async UniTask RespawnPlayerAsync()
         { 
             await UniTask.Delay(_respawnTimeMS);
-            _playerSpaceship.RequestRespawn();
+            _playerSpaceship.ResetRigidbody();
+            _playerSpaceship.SetActive(true);
         }
 
         ~PlayerSpaceshipRespawner()
