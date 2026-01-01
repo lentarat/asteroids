@@ -1,4 +1,5 @@
 using Asteroids.Signals;
+using Asteroids.Spaceship.Death;
 using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
 using System;
@@ -13,9 +14,10 @@ namespace Asteroids.Spaceship
         [SerializeField] private SpaceshipMovement _spaceshipMovement;
 
         public SpaceshipType SpaceshipType { get; private set; }
-        private SignalBus _signalBus;
 
-        public void InitializeSpaceship(SpaceshipContext spaceshipContext, SignalBus signalBus)
+        private IDeathHandler _deathHandler;
+
+        public void InitializeSpaceship(SpaceshipContext spaceshipContext)
         {
             SpaceshipType = spaceshipContext.SpaceshipType;
 
@@ -27,10 +29,10 @@ namespace Asteroids.Spaceship
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = spaceshipContext.Color;
 
-            _signalBus = signalBus;
+            _deathHandler = spaceshipContext.DeathHandler;
         }
 
-        public void HideSpaceship()
+        public void DisableGameObject()
         { 
             gameObject.SetActive(false);
         }
@@ -47,19 +49,18 @@ namespace Asteroids.Spaceship
 
             if (damageable != null)
             {
-                DestroySpaceshipSignal();
+                HandleDeath();
             }
         }
 
-        private void DestroySpaceshipSignal()
+        private void HandleDeath()
         {
-            SpaceshipDestroyedSignal spaceshipDestroyedSignal = new(this);
-            _signalBus.Fire(spaceshipDestroyedSignal);
+            _deathHandler.HandleDeath();
         }
 
         void IDamageable.ApplyDamage(float damage)
         {
-            DestroySpaceshipSignal();
+            HandleDeath();
         }
     }
 }

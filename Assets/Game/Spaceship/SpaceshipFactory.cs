@@ -1,10 +1,10 @@
 using Asteroids.Spaceship;
+using Asteroids.Spaceship.Death;
 using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
-using TMPro;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using Zenject;
+using Zenject.SpaceFighter;
 
 namespace Asteroids.Spaceship
 {
@@ -35,9 +35,11 @@ namespace Asteroids.Spaceship
             SpaceshipType spaceshipType = SpaceshipType.Player;
             ISpaceshipMover spaceshipMover = new PlayerSpaceshipMovementInputReader(_playerInputActions);
             ISpaceshipShooter spaceshipShooter = new PlayerSpaceshipShootingReader(_playerInputActions);
+            IDeathHandler deathHandler = new PlayerDeathHandler(_signalBus);
             Color color = Color.green;
-            SpaceshipContext spaceshipContext = new(spaceshipType, spaceshipMover, spaceshipShooter, color);
-            spaceship.InitializeSpaceship(spaceshipContext, _signalBus);
+            SpaceshipContext spaceshipContext =
+                new(spaceshipType, spaceshipMover, spaceshipShooter, deathHandler, color);
+            spaceship.InitializeSpaceship(spaceshipContext);
 
             _playerRigidbody = spaceship.GetComponent<Rigidbody2D>();
 
@@ -53,9 +55,11 @@ namespace Asteroids.Spaceship
             Rigidbody2D spaceshipRigidbody = spaceship.GetComponent<Rigidbody2D>();
             ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(spaceshipRigidbody, _playerRigidbody);
             ISpaceshipShooter spaceshipShooter = new EnemySpaceshipShooter();
+            //IDeathHandler 
             Color color = Color.red;
-            SpaceshipContext spaceshipContext = new SpaceshipContext(spaceshipType,spaceshipMover, spaceshipShooter, color);
-            spaceship.InitializeSpaceship(spaceshipContext, _signalBus);
+            //SpaceshipContext spaceshipContext =
+            //    new SpaceshipContext(spaceshipType,spaceshipMover, spaceshipShooter, color);
+            //spaceship.InitializeSpaceship(spaceshipContext, _signalBus);
 
             spaceship.transform.position = position;
 

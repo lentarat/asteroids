@@ -32,7 +32,7 @@ namespace Asteroids.Signals.Handlers
             }
 
             _playerSpaceship = spaceshipDestroyedSignal.Spaceship;
-            _playerSpaceship.HideSpaceship();
+            _playerSpaceship.DisableGameObject();
 
             RespawnPlayerAsync().Forget();
         }
