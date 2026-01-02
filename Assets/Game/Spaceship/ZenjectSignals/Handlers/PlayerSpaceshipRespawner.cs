@@ -3,34 +3,33 @@ using Asteroids.Spaceship;
 using Cysharp.Threading.Tasks;
 using Zenject;
 using Asteroids.Spaceship.Movement;
+using System;
 
 namespace Asteroids.Signals.Handlers
 {
-    public class PlayerSpaceshipRespawner
+    public class PlayerSpaceshipRespawner : IInitializable, IDisposable
     {
         private int _respawnTimeMS = 3000;
-        private Spaceship.Spaceship _playerSpaceship;
+        private ISpaceship _playerSpaceship;
         private SignalBus _signalBus;
 
         public PlayerSpaceshipRespawner(SignalBus signalBus)
         {
             _signalBus = signalBus;
+        }
+
+        void IInitializable.Initialize()
+        {
             SubscribeToSpaceshipDestroyed();
         }
 
         private void SubscribeToSpaceshipDestroyed()
         {
-            _signalBus.Subscribe<SpaceshipDestroyedSignal>(HandlePlayerDestroyed);
+            _signalBus.Subscribe<PlayerDestroyedSignal>(HandlePlayerDestroyed);
         }
 
-        public void HandlePlayerDestroyed(SpaceshipDestroyedSignal spaceshipDestroyedSignal)
+        private void HandlePlayerDestroyed(PlayerDestroyedSignal spaceshipDestroyedSignal)
         {
-            SpaceshipType spaceshipType = spaceshipDestroyedSignal.Spaceship.SpaceshipType;
-            if (spaceshipType != SpaceshipType.Player)
-            {
-                return;
-            }
-
             _playerSpaceship = spaceshipDestroyedSignal.Spaceship;
             _playerSpaceship.SetActive(false);
 
@@ -38,20 +37,21 @@ namespace Asteroids.Signals.Handlers
         }
 
         private async UniTask RespawnPlayerAsync()
-        { 
+        {
             await UniTask.Delay(_respawnTimeMS);
+
             _playerSpaceship.ResetRigidbody();
             _playerSpaceship.SetActive(true);
         }
 
-        ~PlayerSpaceshipRespawner()
+        void IDisposable.Dispose()
         {
             UnsubscribeToSpaceshipDestroyed();
         }
 
         private void UnsubscribeToSpaceshipDestroyed()
         {
-            _signalBus.Unsubscribe<SpaceshipDestroyedSignal>(HandlePlayerDestroyed);
+            _signalBus.Unsubscribe<PlayerDestroyedSignal>(HandlePlayerDestroyed);
         }
     }
 }

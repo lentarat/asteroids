@@ -7,8 +7,8 @@ public class SignalsInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.DeclareSignal<SpaceshipDestroyedSignal>();
-        Container.Bind<PlayerSpaceshipRespawner>()
+        Container.DeclareSignal<PlayerDestroyedSignal>();
+        Container.BindInterfacesTo<PlayerSpaceshipRespawner>()
             .AsSingle()
             .NonLazy();
     }

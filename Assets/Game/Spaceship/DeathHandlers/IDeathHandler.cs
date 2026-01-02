@@ -4,6 +4,6 @@ namespace Asteroids.Spaceship.Death
 {
     public interface IDeathHandler
     {
-        void HandleDeath(Spaceship spaceship);
+        void HandleDeath(ISpaceship spaceship);
     }
 }

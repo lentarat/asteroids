@@ -8,19 +8,15 @@ using Zenject;
 
 namespace Asteroids.Spaceship
 {
-    public class Spaceship : MonoBehaviour, IDamageable
+    public class Spaceship : MonoBehaviour, ISpaceship, IDamageable
     {
         [SerializeField] private SpaceshipShooting _spaceshipShooting;
         [SerializeField] private SpaceshipMovement _spaceshipMovement;
-
-        public SpaceshipType SpaceshipType { get; private set; }
 
         private IDeathHandler _deathHandler;
 
         public void InitializeSpaceship(SpaceshipContext spaceshipContext)
         {
-            SpaceshipType = spaceshipContext.SpaceshipType;
-
             ISpaceshipMover spaceshipMover = spaceshipContext.SpaceshipMover;
             ISpaceshipShooter spaceshipShooter = spaceshipContext.SpaceshipShooter;
             _spaceshipMovement.Init(spaceshipMover);
@@ -32,34 +28,34 @@ namespace Asteroids.Spaceship
             _deathHandler = spaceshipContext.DeathHandler;
         }
 
-        public void SetActive(bool isActive)
-        { 
-            gameObject.SetActive(isActive);
-        }
-
-        public void ResetRigidbody()
-        {
-            _spaceshipMovement.ResetRigidbody();
-        }
-
         private void OnTriggerEnter2D(Collider2D collider)
         {
             IDamageable damageable = collider.GetComponentInParent<IDamageable>(true);
 
             if (damageable != null)
             {
-                HandleDeath();
+                _deathHandler.HandleDeath(this);
             }
         }
 
-        private void HandleDeath()
+        void ISpaceship.SetActive(bool isActive)
         {
-            _deathHandler.HandleDeath(this);
+            gameObject.SetActive(isActive);
+        }
+
+        void ISpaceship.ResetRigidbody()
+        {
+            _spaceshipMovement.ResetRigidbody();
+        }
+
+        void ISpaceship.Die()
+        {
+            Destroy(gameObject);
         }
 
         void IDamageable.ApplyDamage(float damage)
         {
-            HandleDeath();
+            _deathHandler.HandleDeath(this);
         }
     }
 }

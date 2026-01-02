@@ -14,9 +14,9 @@ namespace Asteroids.Spaceship.Death
             _signalBus = signalBus;
         }
 
-        void IDeathHandler.HandleDeath(Spaceship spaceship)
+        void IDeathHandler.HandleDeath(ISpaceship spaceship)
         {
-            SpaceshipDestroyedSignal spaceshipDestroyedSignal = new SpaceshipDestroyedSignal(spaceship);
+            PlayerDestroyedSignal spaceshipDestroyedSignal = new PlayerDestroyedSignal(spaceship);
             _signalBus.Fire(spaceshipDestroyedSignal);
         }
     }

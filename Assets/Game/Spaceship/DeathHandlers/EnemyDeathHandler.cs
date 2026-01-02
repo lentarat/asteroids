@@ -7,9 +7,9 @@ namespace Asteroids.Spaceship.Death
 {
     public class EnemyDeathHandler : IDeathHandler
     {
-        void IDeathHandler.HandleDeath(Spaceship spaceship)
+        void IDeathHandler.HandleDeath(ISpaceship spaceship)
         {
-            GameObject.Destroy(spaceship.gameObject);
+            spaceship.Die();
         }
     }
 }
