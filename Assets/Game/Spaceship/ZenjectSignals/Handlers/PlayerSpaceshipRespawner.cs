@@ -40,7 +40,7 @@ namespace Asteroids.Signals.Handlers
         {
             await UniTask.Delay(_respawnTimeMS);
 
-            _playerSpaceship.ResetRigidbody();
+            _playerSpaceship.ResetMovement();
             _playerSpaceship.SetActive(true);
         }
 

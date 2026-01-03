@@ -43,9 +43,9 @@ namespace Asteroids.Spaceship
             gameObject.SetActive(isActive);
         }
 
-        void ISpaceship.ResetRigidbody()
+        void ISpaceship.ResetMovement()
         {
-            _spaceshipMovement.ResetRigidbody();
+            _spaceshipMovement.ResetMovement();
         }
 
         void ISpaceship.Die()

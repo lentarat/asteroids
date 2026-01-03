@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using UnityEngine;
 using Zenject;
@@ -18,16 +19,21 @@ namespace Asteroids.Spaceship.Movement
             _spaceshipMover = spaceshipMover;
         }
 
-        public void ResetRigidbody()
+        public void ResetMovement()
         {
+            ResetMovementAsync().Forget();
+        }
+
+        private async UniTask ResetMovementAsync()
+        {
+            await UniTask.WaitForFixedUpdate();
+
             _rigidbody.position = Vector2.zero;
-            _rigidbody.linearVelocity = Vector2.zero;
+            _currentVelocity = Vector2.zero;
         }
 
         private void Update()
         {
-            HandleCurrentVelocity();
-            HandleCurrentAngularVelocity();
         }
 
         private void HandleCurrentVelocity()
@@ -68,6 +74,8 @@ namespace Asteroids.Spaceship.Movement
 
         private void FixedUpdate()
         {
+            HandleCurrentVelocity();
+            HandleCurrentAngularVelocity();
             Move();
             Rotate();
         }
