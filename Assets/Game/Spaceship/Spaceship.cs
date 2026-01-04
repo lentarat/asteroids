@@ -2,7 +2,9 @@ using Asteroids.Signals;
 using Asteroids.Spaceship.Death;
 using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
+using Cysharp.Threading.Tasks;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -38,8 +40,14 @@ namespace Asteroids.Spaceship
             }
         }
 
-        void ISpaceship.SetActive(bool isActive)
+        void ISpaceship.SetActiveAfterFixedUpdate(bool isActive)
         {
+            SetActiveAfterFixedUpdateAsync(isActive).Forget();
+        }
+
+        private async UniTask SetActiveAfterFixedUpdateAsync(bool isActive)
+        {
+            await UniTask.WaitForFixedUpdate();
             gameObject.SetActive(isActive);
         }
 

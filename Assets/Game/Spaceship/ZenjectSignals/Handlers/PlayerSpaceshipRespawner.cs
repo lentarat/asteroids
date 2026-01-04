@@ -31,7 +31,7 @@ namespace Asteroids.Signals.Handlers
         private void HandlePlayerDestroyed(PlayerDestroyedSignal spaceshipDestroyedSignal)
         {
             _playerSpaceship = spaceshipDestroyedSignal.Spaceship;
-            _playerSpaceship.SetActive(false);
+            _playerSpaceship.SetActiveAfterFixedUpdate(false);
 
             RespawnPlayerAsync().Forget();
         }
@@ -41,7 +41,7 @@ namespace Asteroids.Signals.Handlers
             await UniTask.Delay(_respawnTimeMS);
 
             _playerSpaceship.ResetMovement();
-            _playerSpaceship.SetActive(true);
+            _playerSpaceship.SetActiveAfterFixedUpdate(true);
         }
 
         void IDisposable.Dispose()
