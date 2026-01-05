@@ -1,8 +1,5 @@
 using Cysharp.Threading.Tasks;
-using System.Collections;
-using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace Asteroids.Spaceship.Movement
 {
@@ -30,12 +27,15 @@ namespace Asteroids.Spaceship.Movement
             await UniTask.WaitForFixedUpdate();
 
             transform.position = Vector2.zero;
-            _currentVelocity = Vector2.zero;
             transform.rotation = Quaternion.identity;
+            _currentVelocity = Vector2.zero;
+            _currentAngularVelocity = 0;
         }
 
         private void Update()
         {
+            HandleCurrentVelocity();
+            HandleCurrentAngularVelocity();
         }
 
         private void HandleCurrentVelocity()
@@ -76,9 +76,6 @@ namespace Asteroids.Spaceship.Movement
 
         private void FixedUpdate()
         {
-            Debug.Log(Time.time);
-            HandleCurrentVelocity();
-            HandleCurrentAngularVelocity();
             Move();
             Rotate();
         }
