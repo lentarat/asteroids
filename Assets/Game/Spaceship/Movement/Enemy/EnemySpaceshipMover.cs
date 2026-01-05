@@ -8,16 +8,17 @@ namespace Asteroids.Spaceship.Movement
 {
     public class EnemySpaceshipMover : ISpaceshipMover
     {
-        private float _changeDestinationInterval = 5f;
-        private float _maxSpeedSqr = 1f;
-        private float _slowTurningDownAngle = 150f;
-        private float _maxRadiusOffsetFromPlayer = 1.5f;
-        private float _maxForwardToDestinationDot = 0.8f;
+        private float _changeDestinationInterval;
+        private float _maxSpeedSqr;
+        private float _slowTurningDownAngle;
+        private float _maxRadiusOffsetFromPlayer;
+        private float _maxForwardToDestinationDot;
         private Vector2 _currentRadiusOffsetFromPlayer;
         private Rigidbody2D _rigidbody;
         private Rigidbody2D _playerRigidbody;
 
         public EnemySpaceshipMover(
+            EnemySpaceshipMovementLogicSO enemySpaceshipMovementLogicSO,
             Rigidbody2D enemyRigidbody,
             Rigidbody2D playerRigidbody
             )
@@ -25,9 +26,19 @@ namespace Asteroids.Spaceship.Movement
             _rigidbody = enemyRigidbody;
             _playerRigidbody = playerRigidbody;
 
+            CacheLogicData(enemySpaceshipMovementLogicSO);
             ChangeDestinationNearPlayerLoopAsync().Forget();
         }
 
+        private void CacheLogicData(EnemySpaceshipMovementLogicSO enemySpaceshipMovementLogicSO)
+        {
+            _changeDestinationInterval = enemySpaceshipMovementLogicSO.ChangeDestinationInterval;
+            _maxSpeedSqr = enemySpaceshipMovementLogicSO.MaxSpeedSqr;
+            _slowTurningDownAngle = enemySpaceshipMovementLogicSO.SlowTurningDownAngle;
+            _maxRadiusOffsetFromPlayer = enemySpaceshipMovementLogicSO.MaxRadiusOffsetFromPlayer;
+            _maxForwardToDestinationDot = enemySpaceshipMovementLogicSO.MaxForwardToDestinationDot;
+        }
+        
         private async UniTask ChangeDestinationNearPlayerLoopAsync()
         {
             while (true)

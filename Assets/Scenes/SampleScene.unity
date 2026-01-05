@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spaceshipPrefab: {fileID: 5754974008639930870, guid: f5904537219ffb44b99600494d147697, type: 3}
+  _enemySpaceshipMovementLogicSO: {fileID: 11400000, guid: 9cf1133404feaab4ea47b6ade48c3d76, type: 2}
 --- !u!114 &162096945
 MonoBehaviour:
   m_ObjectHideFlags: 0

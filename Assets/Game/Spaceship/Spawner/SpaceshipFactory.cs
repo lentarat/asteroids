@@ -13,17 +13,20 @@ namespace Asteroids.Spaceship
         private PlayerInputActions _playerInputActions;
         private SignalBus _signalBus;
         private Rigidbody2D _playerRigidbody;
+        private EnemySpaceshipMovementLogicSO _enemySpaceshipMovementLogicSO;
 
         [Inject]
         public SpaceshipFactory(
             Spaceship spaceshipPrefab,
             PlayerInputActions playerInputActions,
-            SignalBus signalBus
+            SignalBus signalBus,
+            EnemySpaceshipMovementLogicSO enemySpaceshipMovementLogicSO
             )
         {
             _spaceshipPrefab = spaceshipPrefab;
             _playerInputActions = playerInputActions;
             _signalBus = signalBus;
+            _enemySpaceshipMovementLogicSO = enemySpaceshipMovementLogicSO;
         }
 
         public Spaceship CreatePlayerSpaceship()
@@ -50,7 +53,9 @@ namespace Asteroids.Spaceship
             spaceship.name = "Enemy" + spaceship.name;
 
             Rigidbody2D spaceshipRigidbody = spaceship.GetComponent<Rigidbody2D>();
-            ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(spaceshipRigidbody, _playerRigidbody);
+            ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(
+                _enemySpaceshipMovementLogicSO, spaceshipRigidbody, _playerRigidbody
+                );
             ISpaceshipShooter spaceshipShooter = new EnemySpaceshipShooter();
             IDeathHandler deathHandler = new EnemyDeathHandler();
             Color color = Color.red;
