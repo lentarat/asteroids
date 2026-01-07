@@ -34,8 +34,8 @@ namespace Asteroids.Spaceship
             Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
             spaceship.name = "Player" + spaceship.name;
             
-            ISpaceshipMover spaceshipMover = new PlayerSpaceshipMovementInputReader(_playerInputActions);
-            ISpaceshipShooter spaceshipShooter = new PlayerSpaceshipShootingReader(_playerInputActions);
+            ISpaceshipMover spaceshipMover = new PlayerSpaceshipMover(_playerInputActions);
+            ISpaceshipShooter spaceshipShooter = new PlayerSpaceshipShooter(_playerInputActions);
             IDeathHandler deathHandler = new PlayerDeathHandler(_signalBus);
             Color color = Color.green;
             SpaceshipContext spaceshipContext =

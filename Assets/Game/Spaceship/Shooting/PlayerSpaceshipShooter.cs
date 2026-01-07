@@ -3,12 +3,12 @@ using UnityEngine.InputSystem;
 
 namespace Asteroids.Spaceship.Shooting
 {
-    public class PlayerSpaceshipShootingReader : ISpaceshipShooter
+    public class PlayerSpaceshipShooter : ISpaceshipShooter
     {
         private bool _isShooting;
         private PlayerInputActions _playerInputActions;
 
-        public PlayerSpaceshipShootingReader(PlayerInputActions playerInputActions)
+        public PlayerSpaceshipShooter(PlayerInputActions playerInputActions)
         {
             _playerInputActions = playerInputActions;
             SubscribeToShooting();
@@ -20,7 +20,7 @@ namespace Asteroids.Spaceship.Shooting
             _playerInputActions.Spaceship.Shoot.canceled += HandleShootingCanceled;
         }
 
-        ~PlayerSpaceshipShootingReader()
+        ~PlayerSpaceshipShooter()
         {
             UnsubscribeToShooting();
         }

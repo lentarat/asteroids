@@ -4,11 +4,11 @@ using UnityEngine.InputSystem;
 
 namespace Asteroids.Spaceship.Movement
 {
-    public class PlayerSpaceshipMovementInputReader : ISpaceshipMover
+    public class PlayerSpaceshipMover : ISpaceshipMover
     {
         private PlayerInputActions _playerInputActions;
 
-        public PlayerSpaceshipMovementInputReader(PlayerInputActions playerInputActions)
+        public PlayerSpaceshipMover(PlayerInputActions playerInputActions)
         {
             _playerInputActions = playerInputActions;
             _playerInputActions.Enable();
@@ -26,7 +26,7 @@ namespace Asteroids.Spaceship.Movement
             return turnDirectionValue;
         }
 
-        ~PlayerSpaceshipMovementInputReader()
+        ~PlayerSpaceshipMover()
         {
             _playerInputActions.Disable();
             _playerInputActions.Dispose();

@@ -6,7 +6,7 @@ namespace Asteroids.Spaceship.Shooting
     {
         bool ISpaceshipShooter.ShouldShoot()
         {
-            return false;
+            return true;
         }
     }
 }
