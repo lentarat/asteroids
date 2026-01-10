@@ -1,3 +1,4 @@
+using Asteroids.General.Audio;
 using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Asteroids.Spaceship.Shooting
         [SerializeField] private SpaceshipWeaponSO _spaceshipWeaponSO;
         [SerializeField] private SpaceshipProjectileSO _spaceshipProjectileSO;
         [SerializeField] private SpaceshipProjectile _spaceshipBullet;
+        [SerializeField] private AudioEmitter _audioEmitter; 
+        [SerializeField] private AudioClip _audioClip;
 
         private float _lastShotTime;
         private Spaceship _parentSpaceship;
@@ -45,6 +48,8 @@ namespace Asteroids.Spaceship.Shooting
                 spaceshipProjectile.Init(_parentSpaceship, sprite, direction, speed, damage);
 
                 _lastShotTime = Time.time;
+
+                _audioEmitter.PlaySound(_audioClip);
             }
         }
 

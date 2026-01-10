@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 5754974008639930870}
   - component: {fileID: 8012553604298350159}
   - component: {fileID: 4297812049980498182}
+  - component: {fileID: 1008984129751520972}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -433,3 +434,15 @@ MonoBehaviour:
   _spaceshipWeaponSO: {fileID: 11400000, guid: e098474b9b7f95140b3169662b3448f0, type: 2}
   _spaceshipProjectileSO: {fileID: 11400000, guid: 21af704c738bc6c4f9c450b75dfa5b56, type: 2}
   _spaceshipBullet: {fileID: -8371888224038286128, guid: 0d0cb0f4d567e5846993255a497237d4, type: 3}
+--- !u!114 &1008984129751520972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8005437697952000306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506958f851f9bb8469061eef147fba5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Asteroids.General.Audio.AudioEmitter
