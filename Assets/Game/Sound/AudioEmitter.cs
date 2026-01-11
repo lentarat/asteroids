@@ -8,10 +8,8 @@ namespace Asteroids.General.Audio
     {
         private AudioSourcePool _audioSourcePool;
 
-        [Inject]
-        private void Construct(AudioSourcePool audioSourcePool)
+        public void Init(AudioSourcePool audioSourcePool)
         {
-            Debug.Log(Time.time);
             _audioSourcePool = audioSourcePool;
         }
 

@@ -1,3 +1,4 @@
+using Asteroids.General.Audio;
 using Asteroids.Signals;
 using Asteroids.Spaceship.Death;
 using Asteroids.Spaceship.Movement;
@@ -14,10 +15,16 @@ namespace Asteroids.Spaceship
     {
         [SerializeField] private SpaceshipShooting _spaceshipShooting;
         [SerializeField] private SpaceshipMovement _spaceshipMovement;
+        [SerializeField] private AudioEmitter _audioEmitter;
 
         private IDeathHandler _deathHandler;
 
-        public void InitializeSpaceship(SpaceshipContext spaceshipContext)
+        public void Init(AudioSourcePool audioSourcePool)
+        {
+            _audioEmitter.Init(audioSourcePool);
+        }
+
+        public void InitializeContext(SpaceshipContext spaceshipContext)
         {
             ISpaceshipMover spaceshipMover = spaceshipContext.SpaceshipMover;
             ISpaceshipShooter spaceshipShooter = spaceshipContext.SpaceshipShooter;

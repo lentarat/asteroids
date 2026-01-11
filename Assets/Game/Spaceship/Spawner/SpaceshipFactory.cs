@@ -1,3 +1,4 @@
+using Asteroids.General.Audio;
 using Asteroids.Spaceship;
 using Asteroids.Spaceship.Death;
 using Asteroids.Spaceship.Movement;
@@ -12,45 +13,57 @@ namespace Asteroids.Spaceship
         private Spaceship _spaceshipPrefab;
         private PlayerInputActions _playerInputActions;
         private SignalBus _signalBus;
-        private Rigidbody2D _playerRigidbody;
         private EnemySpaceshipMovementLogicSO _enemySpaceshipMovementLogicSO;
+        private AudioSourcePool _audioSourcePool;
+        private Rigidbody2D _playerRigidbody;
 
         [Inject]
         public SpaceshipFactory(
             Spaceship spaceshipPrefab,
             PlayerInputActions playerInputActions,
             SignalBus signalBus,
-            EnemySpaceshipMovementLogicSO enemySpaceshipMovementLogicSO
+            EnemySpaceshipMovementLogicSO enemySpaceshipMovementLogicSO,
+            AudioSourcePool audioSourcePool
             )
         {
             _spaceshipPrefab = spaceshipPrefab;
             _playerInputActions = playerInputActions;
             _signalBus = signalBus;
             _enemySpaceshipMovementLogicSO = enemySpaceshipMovementLogicSO;
+            _audioSourcePool = audioSourcePool;
         }
 
         public Spaceship CreatePlayerSpaceship()
         {
-            Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
-            spaceship.name = "Player" + spaceship.name;
-            
+            string spaceshipName = "Player";
+            Spaceship spaceship = CreateBaseSpaceship(spaceshipName);
+
             ISpaceshipMover spaceshipMover = new PlayerSpaceshipMover(_playerInputActions);
             ISpaceshipShooter spaceshipShooter = new PlayerSpaceshipShooter(_playerInputActions);
             IDeathHandler deathHandler = new PlayerDeathHandler(_signalBus);
             Color color = Color.green;
             SpaceshipContext spaceshipContext =
                 new(spaceshipMover, spaceshipShooter, deathHandler, color);
-            spaceship.InitializeSpaceship(spaceshipContext);
+            spaceship.InitializeContext(spaceshipContext);
 
             _playerRigidbody = spaceship.GetComponent<Rigidbody2D>();
 
             return spaceship;
         }
 
-        public Spaceship CreateEnemySpaceship(Vector2 position)
+        private Spaceship CreateBaseSpaceship(string name)
         {
             Spaceship spaceship = GameObject.Instantiate(_spaceshipPrefab);
-            spaceship.name = "Enemy" + spaceship.name;
+            spaceship.name = name + spaceship.name;
+            spaceship.Init(_audioSourcePool);
+
+            return spaceship;
+        }
+
+        public Spaceship CreateEnemySpaceship(Vector2 position)
+        {
+            string spaceshipName = "Enemy";
+            Spaceship spaceship = CreateBaseSpaceship(spaceshipName);
 
             Rigidbody2D spaceshipRigidbody = spaceship.GetComponent<Rigidbody2D>();
             ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(
@@ -61,7 +74,7 @@ namespace Asteroids.Spaceship
             Color color = Color.red;
             SpaceshipContext spaceshipContext =
                 new(spaceshipMover, spaceshipShooter, deathHandler, color);
-            spaceship.InitializeSpaceship(spaceshipContext);
+            spaceship.InitializeContext(spaceshipContext);
 
             spaceship.transform.position = position;
 

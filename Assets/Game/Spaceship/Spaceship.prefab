@@ -405,6 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spaceshipShooting: {fileID: 4297812049980498182}
   _spaceshipMovement: {fileID: 8012553604298350159}
+  _audioEmitter: {fileID: 1008984129751520972}
 --- !u!114 &8012553604298350159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +435,8 @@ MonoBehaviour:
   _spaceshipWeaponSO: {fileID: 11400000, guid: e098474b9b7f95140b3169662b3448f0, type: 2}
   _spaceshipProjectileSO: {fileID: 11400000, guid: 21af704c738bc6c4f9c450b75dfa5b56, type: 2}
   _spaceshipBullet: {fileID: -8371888224038286128, guid: 0d0cb0f4d567e5846993255a497237d4, type: 3}
+  _audioEmitter: {fileID: 1008984129751520972}
+  _audioClip: {fileID: 8300000, guid: 9c6cee2e98b78de429a056cde81f5d7e, type: 3}
 --- !u!114 &1008984129751520972
 MonoBehaviour:
   m_ObjectHideFlags: 0
