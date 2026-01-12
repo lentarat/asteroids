@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -16,7 +17,8 @@ namespace Asteroids.Spaceship.Shooting
             Sprite sprite,
             Vector2 direction,
             float speed,
-            float damage
+            float damage,
+            int lifetimeMS
             )
         {
             _parentSpaceship = parentSpaceship;
@@ -24,6 +26,13 @@ namespace Asteroids.Spaceship.Shooting
             transform.up = direction;
             _rigidbody.linearVelocity = direction * speed;
             _damage = damage;
+            DestroyAfterAsync(lifetimeMS).Forget();
+        }
+
+        private async UniTask DestroyAfterAsync(int lifetimeMS)
+        {
+            await UniTask.Delay(lifetimeMS);
+            Destroy(gameObject);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)

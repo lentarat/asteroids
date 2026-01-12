@@ -44,8 +44,9 @@ namespace Asteroids.Spaceship.Shooting
                 Vector2 direction = transform.up;
                 float speed = _spaceshipWeaponSO.ProjectileSpeed;
                 float damage = _spaceshipProjectileSO.Damage;
+                int lifetimeMS = _spaceshipProjectileSO.LifetimeMS;
 
-                spaceshipProjectile.Init(_parentSpaceship, sprite, direction, speed, damage);
+                spaceshipProjectile.Init(_parentSpaceship, sprite, direction, speed, damage, lifetimeMS);
 
                 _lastShotTime = Time.time;
 

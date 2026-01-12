@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d38a232e826b5c549bcf0e1d577aef6b, type: 3}
   m_Name: SpaceshipProjectileSO
   m_EditorClassIdentifier: 
-  _interval: 1
   _damage: 1
+  _lifetimeMS: 1000
   _projectileSprite: {fileID: 2692968564913184607, guid: b4796e62882f73d4caf2a6f2fd75a8bd, type: 3}
