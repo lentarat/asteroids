@@ -6,6 +6,7 @@ namespace Asteroids.General.Audio
 {
     public class AudioSourcePool : MonoBehaviour
     {
+        [SerializeField] private Transform _audioSourcesParent;
         private ObjectPool<AudioSource> _objectPool;
 
         public void PlaySound(AudioClip clip)
@@ -29,6 +30,7 @@ namespace Asteroids.General.Audio
         private AudioSource CreateAudioSource()
         {
             var go = new GameObject("PooledAudio");
+            go.transform.parent = _audioSourcesParent;
             return go.AddComponent<AudioSource>();
         }
 

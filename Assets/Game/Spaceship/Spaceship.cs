@@ -19,17 +19,18 @@ namespace Asteroids.Spaceship
 
         private IDeathHandler _deathHandler;
 
-        public void Init(AudioSourcePool audioSourcePool)
+        public void Init(AudioSourcePool audioSourcePool, Transform projectilesParent)
         {
             _audioEmitter.Init(audioSourcePool);
+            _spaceshipShooting.Init(projectilesParent, this);
         }
 
         public void InitializeContext(SpaceshipContext spaceshipContext)
         {
             ISpaceshipMover spaceshipMover = spaceshipContext.SpaceshipMover;
             ISpaceshipShooter spaceshipShooter = spaceshipContext.SpaceshipShooter;
-            _spaceshipMovement.Init(spaceshipMover);
-            _spaceshipShooting.Init(spaceshipShooter, this);
+            _spaceshipMovement.InitializeContext(spaceshipMover);
+            _spaceshipShooting.InitializeContext(spaceshipShooter);
 
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = spaceshipContext.Color;

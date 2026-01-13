@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18781777}
   m_Layer: 0
-  m_Name: EnemySpaceshipHolder
+  m_Name: EnemySpaceshipsParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spaceshipPrefab: {fileID: 5754974008639930870, guid: f5904537219ffb44b99600494d147697, type: 3}
+  _projectilesParent: {fileID: 0}
   _enemySpaceshipMovementLogicSO: {fileID: 11400000, guid: 9cf1133404feaab4ea47b6ade48c3d76, type: 2}
 --- !u!114 &162096945
 MonoBehaviour:
@@ -508,6 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41eec57c8a9e54948bca4edf1ed45fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteroids.General.Audio.AudioSourcePool
+  _audioSourcesParent: {fileID: 0}
 --- !u!4 &871439011
 Transform:
   m_ObjectHideFlags: 0
@@ -518,6 +520,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.54489, y: 5.54162, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &915219033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 915219034}
+  m_Layer: 0
+  m_Name: ProjectilesParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &915219034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915219033}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.96844, y: 14.41224, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -585,3 +618,4 @@ SceneRoots:
   - {fileID: 18781777}
   - {fileID: 871439011}
   - {fileID: 162096943}
+  - {fileID: 915219034}

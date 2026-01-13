@@ -14,13 +14,19 @@ namespace Asteroids.Spaceship.Shooting
         [SerializeField] private AudioClip _audioClip;
 
         private float _lastShotTime;
+        private Transform _projectilesParent;
         private Spaceship _parentSpaceship;
         private ISpaceshipShooter _spaceshipShooter;
 
-        public void Init(ISpaceshipShooter spaceshipShooter, Spaceship parentSpaceship)
+        public void Init(Transform projectilesParent, Spaceship parentSpaceship)
+        {
+            _projectilesParent = projectilesParent;
+            _parentSpaceship = parentSpaceship;
+        }
+
+        public void InitializeContext(ISpaceshipShooter spaceshipShooter)
         {
             _spaceshipShooter = spaceshipShooter;
-            _parentSpaceship = parentSpaceship;
         }
 
         private void Update()
@@ -38,7 +44,7 @@ namespace Asteroids.Spaceship.Shooting
             if (hasShootingIntervalPassed)
             {
                 SpaceshipProjectile spaceshipProjectile = 
-                    Instantiate(_spaceshipBullet, transform.position, Quaternion.identity);
+                    Instantiate(_spaceshipBullet, transform.position, Quaternion.identity, _projectilesParent);
 
                 Sprite sprite = _spaceshipProjectileSO.ProjectileSprite;
                 Vector2 direction = transform.up;

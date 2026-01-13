@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SpaceshipProjectileSO
   m_EditorClassIdentifier: 
   _damage: 1
-  _lifetimeMS: 1000
+  _lifetimeMS: 5000
   _projectileSprite: {fileID: 2692968564913184607, guid: b4796e62882f73d4caf2a6f2fd75a8bd, type: 3}
