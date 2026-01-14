@@ -9,11 +9,14 @@ namespace Asteroids.General.Audio
         [SerializeField] private Transform _audioSourcesParent;
         private ObjectPool<AudioSource> _objectPool;
 
-        public void PlaySound(AudioClip clip)
+        public void PlaySound(AudioClip clip, float volume = 1f, float pitch = 1f)
         {
-            var source = _objectPool.Get();
-            source.PlayOneShot(clip);
-            ReturnToPool(source, clip.length).Forget();
+            AudioSource audioSource = _objectPool.Get();
+
+            audioSource.pitch = pitch;
+            audioSource.PlayOneShot(clip);
+
+            ReturnToPool(audioSource, clip.length).Forget();
         }
 
         private void Awake()

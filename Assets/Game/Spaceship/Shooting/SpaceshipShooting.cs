@@ -12,6 +12,7 @@ namespace Asteroids.Spaceship.Shooting
         [SerializeField] private SpaceshipProjectile _spaceshipBullet;
         [SerializeField] private AudioEmitter _audioEmitter; 
         [SerializeField] private AudioClip _audioClip;
+        [SerializeField, Range(0f, 0.5f)] private float _randomPitchDeviation;
 
         private float _lastShotTime;
         private Transform _projectilesParent;
@@ -55,8 +56,6 @@ namespace Asteroids.Spaceship.Shooting
                 spaceshipProjectile.Init(_parentSpaceship, sprite, direction, speed, damage, lifetimeMS);
 
                 _lastShotTime = Time.time;
-
-                _audioEmitter.PlaySound(_audioClip);
             }
         }
 
@@ -64,7 +63,14 @@ namespace Asteroids.Spaceship.Shooting
         {
             bool hasShootingIntervalPassed =
                 Time.time > _lastShotTime + _spaceshipWeaponSO.Interval;
+
             return hasShootingIntervalPassed;
+        }
+
+        private void PlayShootingSound()
+        {
+            float randomPitch = Random.Range(1f - _randomPitchDeviation, 1f + _randomPitchDeviation);
+            _audioEmitter.PlaySound(_audioClip, randomPitch);
         }
     }
 }

@@ -45,9 +45,11 @@ namespace Asteroids.Spaceship.Creation
             Spaceship spaceship = CreateBaseSpaceship(spaceshipName);
             Rigidbody2D spaceshipRigidbody = spaceship.GetComponent<Rigidbody2D>();
 
-            EnemySpaceshipMovementLogicSO enemySpaceshipMovementLogicSO = _spaceshipFactoryConfig.EnemyMovementLogic;
+            EnemySpaceshipMovementLogicSO enemySpaceshipMovementLogicSO =
+                _spaceshipFactoryConfig.EnemyMovementLogic;
             ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(
-                enemySpaceshipMovementLogicSO, spaceshipRigidbody, _playerRigidbody);
+                enemySpaceshipMovementLogicSO, spaceshipRigidbody, _playerRigidbody
+                );
             ISpaceshipShooter spaceshipShooter = new EnemySpaceshipShooter();
             IDeathHandler deathHandler = new EnemyDeathHandler();
             Color color = Color.red;
@@ -63,7 +65,8 @@ namespace Asteroids.Spaceship.Creation
 
         private Spaceship CreateBaseSpaceship(string name)
         {
-            Spaceship spaceship = GameObject.Instantiate(_spaceshipFactoryConfig.SpaceshipPrefab);
+            Spaceship spaceshipPrefab = _spaceshipFactoryConfig.SpaceshipPrefab;
+            Spaceship spaceship = GameObject.Instantiate(spaceshipPrefab);
             spaceship.name = name + spaceship.name;
             spaceship.Init(_spaceshipFactoryConfig.AudioSourcePool, _spaceshipFactoryConfig.ProjectilesParent);
             return spaceship;
