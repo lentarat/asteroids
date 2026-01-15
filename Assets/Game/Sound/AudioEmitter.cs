@@ -1,5 +1,6 @@
 using Asteroids.General;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace Asteroids.General.Audio

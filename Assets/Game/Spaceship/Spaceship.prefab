@@ -450,3 +450,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506958f851f9bb8469061eef147fba5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteroids.General.Audio.AudioEmitter
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4297812049980498182}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
