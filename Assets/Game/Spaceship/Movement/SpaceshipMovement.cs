@@ -1,4 +1,6 @@
 using Cysharp.Threading.Tasks;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Asteroids.Spaceship.Movement
@@ -7,7 +9,10 @@ namespace Asteroids.Spaceship.Movement
     {
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private SpaceshipMovementSO _spaceshipMovementSO;
-        
+
+        public event Action<bool> OnThrottleValueChanged;
+
+        private bool _isThrottling;
         private float _currentAngularVelocity;
         private Vector2 _currentVelocity;
         private ISpaceshipMover _spaceshipMover;
@@ -47,12 +52,27 @@ namespace Asteroids.Spaceship.Movement
                 Vector3 velocityOffset = throttleValue * transform.up *
                     _spaceshipMovementSO.Acceleration * Time.deltaTime;
                 _currentVelocity += new Vector2(velocityOffset.x, velocityOffset.y);
-                
+
                 bool hasAcceededMaxSpeed = HasAcceededMaxSpeed();
                 if (hasAcceededMaxSpeed)
                 {
                     _currentVelocity = _currentVelocity.normalized * _spaceshipMovementSO.MaxSpeed;
                 }
+
+                UpdateThrottlingState(true);
+            }
+            else
+            {
+                UpdateThrottlingState(false);
+            }
+        }
+        
+        private void UpdateThrottlingState(bool isThrottling)
+        {
+            if (_isThrottling != isThrottling)
+            {
+                _isThrottling = isThrottling;
+                OnThrottleValueChanged?.Invoke(isThrottling);
             }
         }
 

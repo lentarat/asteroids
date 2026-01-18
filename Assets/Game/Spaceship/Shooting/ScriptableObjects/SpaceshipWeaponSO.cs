@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Asteroids.Spaceship.Shooting
 {
-    [CreateAssetMenu(fileName = "SpaceshipWeaponSO", menuName = "ScriptableObjects/SpaceshipWeaponSO")]
+    [CreateAssetMenu(menuName = "ScriptableObjects/SpaceshipWeaponSO")]
     public class SpaceshipWeaponSO : ScriptableObject
     {
         [SerializeField] private float _interval;

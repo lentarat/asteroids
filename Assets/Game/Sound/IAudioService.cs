@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IAudioService
+namespace Asteroids.General.Audio
 {
-    void Play(AudioDefinitionSO definition, Vector3 position);
+    public interface IAudioService
+    {
+        void Play(AudioDefinitionSO definition, Vector3 position);
+    }
 }

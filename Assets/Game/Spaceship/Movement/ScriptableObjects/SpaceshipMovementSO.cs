@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Asteroids.Spaceship.Movement
 {
-    [CreateAssetMenu(fileName = "SpaceshipMovementSO", menuName = "ScriptableObjects/SpaceshipMovementSO")]
+    [CreateAssetMenu(menuName = "ScriptableObjects/SpaceshipMovementSO")]
     public class SpaceshipMovementSO : ScriptableObject
     {
         [SerializeField] private float _acceleration;

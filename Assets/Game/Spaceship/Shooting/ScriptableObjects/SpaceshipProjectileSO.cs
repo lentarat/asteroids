@@ -1,8 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(
-    fileName = "SpaceshipProjectileSO",
-    menuName = "ScriptableObjects/SpaceshipProjectileSO")]
+[CreateAssetMenu(menuName = "ScriptableObjects/SpaceshipProjectileSO")]
 public class SpaceshipProjectileSO : ScriptableObject
 {
     [SerializeField] private float _damage;

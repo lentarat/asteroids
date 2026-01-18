@@ -2,10 +2,7 @@ using UnityEngine;
 
 namespace Asteroids.Spaceship.Movement
 {
-    [CreateAssetMenu(
-        fileName = "EnemySpaceshipMovementLogicSO",
-        menuName = "ScriptableObjects/EnemySpaceshipMovementLogicSO"
-        )]
+    [CreateAssetMenu(menuName = "ScriptableObjects/EnemySpaceshipMovementLogicSO")]
     public class EnemySpaceshipMovementLogicSO : ScriptableObject
     {
         [SerializeField] private float _changeDestinationInterval = 5f;
