@@ -1,4 +1,4 @@
-namespace General.Game.Event
+namespace Asteroids.Game.Event
 {
     public enum GameplayEventType
     {
