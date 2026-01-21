@@ -4,7 +4,7 @@ namespace Asteroids.Game.Event
 {
     public struct GameplayEvent
     {
-        public GameplayEventType Type;
+        public GameplayEventType GameplayEventType;
         public GameObject GameObject;
         public Vector3 PositionVector;
     }
