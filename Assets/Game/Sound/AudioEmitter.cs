@@ -8,6 +8,7 @@ namespace Asteroids.General.Audio
     public class AudioEmitter : MonoBehaviour
     {
         private AudioSourcePool _audioSourcePool;
+        private AudioClip _audioClip;
 
         public void Init(AudioSourcePool audioSourcePool)
         {
