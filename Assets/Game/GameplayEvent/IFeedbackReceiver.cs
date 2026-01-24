@@ -1,4 +1,7 @@
-public interface IFeedbackReceiver<TEvent>
+namespace Asteroids.Game.Event.Handlers
 {
-    void OnEvent(TEvent evt);
+    public interface IFeedbackReceiver<TEvent>
+    {
+        void OnEvent(TEvent evt);
+    }
 }

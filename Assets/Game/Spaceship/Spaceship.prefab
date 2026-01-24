@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 8012553604298350159}
   - component: {fileID: 4297812049980498182}
   - component: {fileID: 1008984129751520972}
+  - component: {fileID: 3044859325441933004}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -435,8 +436,6 @@ MonoBehaviour:
   _spaceshipWeaponSO: {fileID: 11400000, guid: e098474b9b7f95140b3169662b3448f0, type: 2}
   _spaceshipProjectileSO: {fileID: 11400000, guid: 21af704c738bc6c4f9c450b75dfa5b56, type: 2}
   _spaceshipBullet: {fileID: -8371888224038286128, guid: 0d0cb0f4d567e5846993255a497237d4, type: 3}
-  _audioEmitter: {fileID: 1008984129751520972}
-  _audioClip: {fileID: 8300000, guid: 9c6cee2e98b78de429a056cde81f5d7e, type: 3}
   _randomPitchDeviation: 0.2
 --- !u!114 &1008984129751520972
 MonoBehaviour:
@@ -450,18 +449,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506958f851f9bb8469061eef147fba5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteroids.General.Audio.AudioEmitter
-  unityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4297812049980498182}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+--- !u!114 &3044859325441933004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8005437697952000306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be8e7eefdb01174d93c899eafaeff68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Asteroids.Game.Event.Handlers.ShotAudioFeedback
+  _audioClip: {fileID: 0}
+  _audioEmitter: {fileID: 0}
+  _pitch: 0

@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class FeedbackComposite<T> : MonoBehaviour, IFeedbackReceiver<T>
+namespace Asteroids.Game.Event.Handlers
 {
-    private IFeedbackReceiver<T>[] _receivers;
-
-    private void Awake()
+    public class FeedbackComposite<T> : MonoBehaviour, IFeedbackReceiver<T>
     {
-        _receivers = GetComponents<IFeedbackReceiver<T>>();
-    }
+        private IFeedbackReceiver<T>[] _receivers;
 
-    public void OnEvent(T @event)
-    {
-        foreach (var receiver in _receivers)
-            receiver.OnEvent(@event);
+        private void Awake()
+        {
+            _receivers = GetComponents<IFeedbackReceiver<T>>();
+        }
+
+        public void OnEvent(T @event)
+        {
+            foreach (var receiver in _receivers)
+                receiver.OnEvent(@event);
+        }
     }
 }

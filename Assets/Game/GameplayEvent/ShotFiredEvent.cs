@@ -1,5 +1,10 @@
-public struct ShotFiredEvent
+using UnityEngine;
+
+namespace Asteroids.Game.Event
 {
-    public Vector3 Position;
-    public Vector2 Direction;
+    public struct ShotFiredEvent
+    {
+        public Vector3 Position { get; set; }
+        public Vector2 Direction { get; set; }
+    }
 }

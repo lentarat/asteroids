@@ -1,3 +1,5 @@
+using Asteroids.Game.Event;
+using Asteroids.Game.Event.Handlers;
 using Asteroids.General.Audio;
 using Asteroids.Spaceship.Movement;
 using Asteroids.Spaceship.Shooting;
@@ -10,9 +12,9 @@ namespace Asteroids.Spaceship.Shooting
         [SerializeField] private SpaceshipWeaponSO _spaceshipWeaponSO;
         [SerializeField] private SpaceshipProjectileSO _spaceshipProjectileSO;
         [SerializeField] private SpaceshipProjectile _spaceshipBullet;
-        [SerializeField] private AudioEmitter _audioEmitter; 
-        [SerializeField] private AudioClip _audioClip;
         [SerializeField, Range(0f, 0.5f)] private float _randomPitchDeviation;
+        
+        private IFeedbackReceiver<ShotFiredEvent> _shotFiredFeedbackReceiver;
 
         private float _lastShotTime;
         private Transform _projectilesParent;
@@ -69,8 +71,9 @@ namespace Asteroids.Spaceship.Shooting
 
         private void PlayShootingSound()
         {
-            float randomPitch = Random.Range(1f - _randomPitchDeviation, 1f + _randomPitchDeviation);
-            _audioEmitter.PlaySound(_audioClip, randomPitch);
+            //float randomPitch = Random.Range(1f - _randomPitchDeviation, 1f + _randomPitchDeviation);
+            ShotFiredEvent shotFiredEvent = new ShotFiredEvent();
+            _shotFiredFeedbackReceiver.OnEvent(shotFiredEvent);
         }
     }
 }

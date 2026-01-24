@@ -1,12 +1,17 @@
 using Asteroids.General.Audio;
+using UnityEngine;
 
-public class ShotAudioFeedback : MonoBehaviour, IFeedbackReceiver<ShotFiredEvent>
+namespace Asteroids.Game.Event.Handlers
 {
-    [SerializeField] private AudioCue _audioCue;
-    [SerializeField] private AudioEmitter _audioEmitter;
-
-    public void OnEvent(ShotFiredEvent evt)
+    public class ShotAudioFeedback : MonoBehaviour, IFeedbackReceiver<ShotFiredEvent>
     {
-        _audioEmitter.Play(_audioCue, evt.Position);
+        [SerializeField] private AudioClip _audioClip;
+        [SerializeField] private AudioEmitter _audioEmitter;
+        [SerializeField] private float _pitch;
+
+        public void OnEvent(ShotFiredEvent shotFiredEvent)
+        {
+            _audioEmitter.PlaySound(_audioClip, _pitch);
+        }
     }
 }
