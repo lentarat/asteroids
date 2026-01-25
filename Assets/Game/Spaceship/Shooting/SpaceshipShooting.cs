@@ -14,7 +14,12 @@ namespace Asteroids.Spaceship.Shooting
         [SerializeField] private SpaceshipProjectile _spaceshipBullet;
         [SerializeField, Range(0f, 0.5f)] private float _randomPitchDeviation;
         
-        private IFeedbackReceiver<ShotFiredEvent> _shotFiredFeedbackReceiver;
+        private IFeedbackReceiver<ShotFiredEvent>[] _shotFiredFeedbackReceivers;
+
+        private void Start()
+        {
+            Debug.Log(GetComponent<IFeedbackReceiver<ShotFiredEvent>>());
+        }
 
         private float _lastShotTime;
         private Transform _projectilesParent;
@@ -25,6 +30,8 @@ namespace Asteroids.Spaceship.Shooting
         {
             _projectilesParent = projectilesParent;
             _parentSpaceship = parentSpaceship;
+
+            _shotFiredFeedbackReceivers = GetComponents<IFeedbackReceiver<ShotFiredEvent>>();
         }
 
         public void InitializeContext(ISpaceshipShooter spaceshipShooter)
@@ -58,6 +65,8 @@ namespace Asteroids.Spaceship.Shooting
                 spaceshipProjectile.Init(_parentSpaceship, sprite, direction, speed, damage, lifetimeMS);
 
                 _lastShotTime = Time.time;
+
+                InformShotFired();
             }
         }
 
@@ -69,11 +78,15 @@ namespace Asteroids.Spaceship.Shooting
             return hasShootingIntervalPassed;
         }
 
-        private void PlayShootingSound()
+        private void InformShotFired()
         {
             //float randomPitch = Random.Range(1f - _randomPitchDeviation, 1f + _randomPitchDeviation);
             ShotFiredEvent shotFiredEvent = new ShotFiredEvent();
-            _shotFiredFeedbackReceiver.OnEvent(shotFiredEvent);
+
+            foreach (IFeedbackReceiver<ShotFiredEvent> receiver in _shotFiredFeedbackReceivers)
+            {
+                receiver.OnEvent(shotFiredEvent);
+            }
         }
     }
 }

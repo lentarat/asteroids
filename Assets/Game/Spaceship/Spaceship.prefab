@@ -461,6 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be8e7eefdb01174d93c899eafaeff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteroids.Game.Event.Handlers.ShotAudioFeedback
-  _audioClip: {fileID: 0}
-  _audioEmitter: {fileID: 0}
-  _pitch: 0
+  _audioClip: {fileID: 8300000, guid: 9c6cee2e98b78de429a056cde81f5d7e, type: 3}
+  _audioEmitter: {fileID: 1008984129751520972}
+  _pitch: 1

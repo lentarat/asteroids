@@ -32,9 +32,10 @@ namespace Asteroids.General.Audio
 
         private AudioSource CreateAudioSource()
         {
-            var go = new GameObject("PooledAudio");
-            go.transform.parent = _audioSourcesParent;
-            return go.AddComponent<AudioSource>();
+            GameObject gameObject = new GameObject("PooledAudio");
+            gameObject.transform.parent = transform;
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            return audioSource;
         }
 
         private async UniTask ReturnToPool(AudioSource source, float delay)
