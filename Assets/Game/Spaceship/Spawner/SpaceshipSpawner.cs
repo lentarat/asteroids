@@ -8,7 +8,9 @@ namespace Asteroids.Spaceship.Creation
 {
     public class SpaceshipSpawner : MonoBehaviour
     {
+        [SerializeField] private bool _spawnEnemies;
         [SerializeField] private float _enemySpaceshipSpawnInterval;
+
         private SpaceshipFactory _spaceshipFactory;
 
         [Inject]
@@ -32,6 +34,12 @@ namespace Asteroids.Spaceship.Creation
         {
             while (true)
             {
+                if (_spawnEnemies == false)
+                {
+                    await UniTask.Yield();
+                    continue;
+                }
+
                 SpawnEnemySpaceship();
                 await UniTask.WaitForSeconds(_enemySpaceshipSpawnInterval);
             }

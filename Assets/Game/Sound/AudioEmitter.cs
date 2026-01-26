@@ -16,7 +16,7 @@ namespace Asteroids.General.Audio
 
         public void PlaySound(AudioClip audioClip, float pitch)
         {
-            _audioSourcePool.PlaySound(audioClip, pitch: pitch);
+            //_audioSourcePool.PlaySound(audioClip, pitch: pitch);
         }
     }
 }

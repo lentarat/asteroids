@@ -24,12 +24,12 @@ namespace Asteroids.Installers
         [Inject]
         private void Construct(
             PlayerInputActions playerInputActions,
-            SignalBus signalBus,
-            AudioSourcePool audioSourcePool)
+            SignalBus signalBus/*,
+            AudioSourcePool audioSourcePool*/)
         {
             _playerInputActions = playerInputActions;
             _signalBus = signalBus;
-            _audioSourcePool = audioSourcePool;
+            //_audioSourcePool = audioSourcePool;
         }
 
         public override void InstallBindings()
