@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OverlappedWindowState : WindowState
+namespace Asteroids.Menu.Windows.State
 {
-    public OverlappedWindowState(BaseWindow baseWindow) : base(baseWindow) 
+    public class OverlappedWindowState : WindowState
     {
+        public OverlappedWindowState(BaseWindow baseWindow) : base(baseWindow)
+        {
 
-    }
+        }
 
-    public override bool ShouldClosePreviousWindow()
-    {
-        return false;
+        public override bool ShouldClosePreviousWindow()
+        {
+            return false;
+        }
     }
 }

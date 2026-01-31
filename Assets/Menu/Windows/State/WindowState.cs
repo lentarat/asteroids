@@ -1,54 +1,58 @@
 using Cysharp.Threading.Tasks;
-public abstract class WindowState
+
+namespace Asteroids.Menu.Windows.State
 {
-    private bool _isClosing;
-    private bool _isOpening;
-    private BaseWindow _baseWindow;
-    protected BaseWindow BaseWindow => _baseWindow;
-
-    public WindowState(BaseWindow baseWindow)
-    { 
-        _baseWindow = baseWindow;
-    }
-
-    public async void Open()
+    public abstract class WindowState
     {
-        if (_isOpening || _isClosing)
-            return;
+        private bool _isClosing;
+        private bool _isOpening;
+        private BaseWindow _baseWindow;
+        protected BaseWindow BaseWindow => _baseWindow;
 
-        _isOpening = true;
+        public WindowState(BaseWindow baseWindow)
+        {
+            _baseWindow = baseWindow;
+        }
 
-        _baseWindow.gameObject.SetActive(true);
-        await HandleOpen();
+        public async void Open()
+        {
+            if (_isOpening || _isClosing)
+                return;
 
-        _isOpening = false;
-    }
+            _isOpening = true;
 
-    public virtual UniTask HandleOpen()
-    {
-        return UniTask.CompletedTask;
-    }
+            _baseWindow.gameObject.SetActive(true);
+            await HandleOpen();
 
-    public async void Close()
-    {
-        if(_isClosing || _isOpening) 
-            return;
-        
-        _isClosing = true;
-        
-        await HandleClose();
-        
-        _isClosing = false;
-        _baseWindow.gameObject.SetActive(false);
-    }
+            _isOpening = false;
+        }
 
-    public virtual UniTask HandleClose() 
-    {
-        return UniTask.CompletedTask;
-    }
+        public virtual UniTask HandleOpen()
+        {
+            return UniTask.CompletedTask;
+        }
 
-    public virtual bool ShouldClosePreviousWindow()
-    {
-        return true;
+        public async void Close()
+        {
+            if (_isClosing || _isOpening)
+                return;
+
+            _isClosing = true;
+
+            await HandleClose();
+
+            _isClosing = false;
+            _baseWindow.gameObject.SetActive(false);
+        }
+
+        public virtual UniTask HandleClose()
+        {
+            return UniTask.CompletedTask;
+        }
+
+        public virtual bool ShouldClosePreviousWindow()
+        {
+            return true;
+        }
     }
 }

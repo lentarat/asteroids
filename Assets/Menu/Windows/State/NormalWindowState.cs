@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalWindowState : WindowState
+namespace Asteroids.Menu.Windows.State
 {
-    public NormalWindowState(BaseWindow baseWindow) : base(baseWindow) 
+    public class NormalWindowState : WindowState
     {
-        
+        public NormalWindowState(BaseWindow baseWindow) : base(baseWindow)
+        {
+
+        }
     }
 }

@@ -1,30 +1,33 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class BackableWindow : BaseWindow
+namespace Asteroids.Menu.Windows.State
 {
-    [Header("BackableWindow fields")]
-    [SerializeField] private Button _openPreviousWindowButton;  
-    [SerializeField] private BaseWindow _previousWindow;
-
-    protected override void Awake()
+    public abstract class BackableWindow : BaseWindow
     {
-        base.Awake();
+        [Header("BackableWindow fields")]
+        [SerializeField] private Button _openPreviousWindowButton;
+        [SerializeField] private BaseWindow _previousWindow;
 
-        SubscribeToBackButton();
-    }
+        protected override void Awake()
+        {
+            base.Awake();
 
-    private void SubscribeToBackButton()
-    {
-        _openPreviousWindowButton.onClick.AddListener(OpenPreviousWindow);
-    }
+            SubscribeToBackButton();
+        }
 
-    private void OpenPreviousWindow()
-    {
-        if (CanCloseWindow() == false)
-            return;
+        private void SubscribeToBackButton()
+        {
+            _openPreviousWindowButton.onClick.AddListener(OpenPreviousWindow);
+        }
 
-        _previousWindow.WindowState.Open();
-        WindowState.Close();
+        private void OpenPreviousWindow()
+        {
+            if (CanCloseWindow() == false)
+                return;
+
+            _previousWindow.WindowState.Open();
+            WindowState.Close();
+        }
     }
 }

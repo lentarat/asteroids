@@ -1,14 +1,18 @@
 using UnityEngine;
 
-public class WindowsInitializer : MonoBehaviour
-{
-    [SerializeField] private BaseWindow[] _windows;
 
-    private void Awake()
+namespace Asteroids.Menu.Windows
+{
+    public class WindowsInitializer : MonoBehaviour
     {
-        foreach (BaseWindow window in _windows)
+        [SerializeField] private BaseWindow[] _windows;
+
+        private void Awake()
         {
-            window.Initialize();
+            foreach (BaseWindow window in _windows)
+            {
+                window.Initialize();
+            }
         }
     }
 }

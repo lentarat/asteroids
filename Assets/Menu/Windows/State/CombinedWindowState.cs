@@ -1,40 +1,43 @@
 using Cysharp.Threading.Tasks;
 
-public class CombinedWindowState : WindowState
+namespace Asteroids.Menu.Windows.State
 {
-    private WindowState[] _windowStates;
-
-    public CombinedWindowState(BaseWindow baseWindow, WindowState[] windowStates) : base(baseWindow)
-    { 
-        _windowStates = windowStates;
-    }
-
-    public override async UniTask HandleOpen()
+    public class CombinedWindowState : WindowState
     {
-        foreach (WindowState state in _windowStates)
+        private WindowState[] _windowStates;
+
+        public CombinedWindowState(BaseWindow baseWindow, WindowState[] windowStates) : base(baseWindow)
         {
-            await state.HandleOpen();
+            _windowStates = windowStates;
         }
-    }
 
-    public override async UniTask HandleClose()
-    {
-        foreach (WindowState state in _windowStates)
+        public override async UniTask HandleOpen()
         {
-            await state.HandleClose();
-        }
-    }
-
-    public override bool ShouldClosePreviousWindow()
-    {
-        foreach (WindowState state in _windowStates)
-        {
-            if (state.ShouldClosePreviousWindow() == false)
+            foreach (WindowState state in _windowStates)
             {
-                return false;
+                await state.HandleOpen();
             }
         }
 
-        return true;
+        public override async UniTask HandleClose()
+        {
+            foreach (WindowState state in _windowStates)
+            {
+                await state.HandleClose();
+            }
+        }
+
+        public override bool ShouldClosePreviousWindow()
+        {
+            foreach (WindowState state in _windowStates)
+            {
+                if (state.ShouldClosePreviousWindow() == false)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
