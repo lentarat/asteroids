@@ -1,4 +1,4 @@
-namespace Asteroids.General.Scene
+namespace Asteroids.General.SceneManagement
 {
     public enum SceneType
     {

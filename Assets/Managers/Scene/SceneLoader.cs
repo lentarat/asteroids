@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-namespace Asteroids.General.Scene
+namespace Asteroids.General.SceneManagement
 {
     public class SceneLoader : ISceneLoader
     {
@@ -29,7 +29,7 @@ namespace Asteroids.General.Scene
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-            await SceneManager.LoadSceneAsync(currentSceneIndex);
+            await SceneManager.LoadSceneAsync(currentSceneIndex).ToUniTask();
 
             Scene currentScene = SceneManager.GetActiveScene();
             InformSceneChanged(currentScene, LoadSceneMode.Single);

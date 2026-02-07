@@ -1,6 +1,6 @@
 using System;
 
-namespace Asteroids.General.Scene
+namespace Asteroids.General.SceneManagement
 {
     public interface ISceneLoader
     {

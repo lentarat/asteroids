@@ -1,4 +1,4 @@
-using Asteroids.General.Scene;
+using Asteroids.General.SceneManagement;
 using Zenject;
 
 namespace Asteroids.Installers.Managers.Scene
