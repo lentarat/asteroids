@@ -185,8 +185,8 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 162096945}
-  - {fileID: 162096944}
   - {fileID: 162096946}
+  - {fileID: 162096944}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -233,7 +233,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spaceshipPrefab: {fileID: 5754974008639930870, guid: f5904537219ffb44b99600494d147697, type: 3}
   _projectilesParent: {fileID: 0}
+  _enemySpaceshipsParent: {fileID: 0}
   _enemySpaceshipMovementLogicSO: {fileID: 11400000, guid: 9cf1133404feaab4ea47b6ade48c3d76, type: 2}
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &162096945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,14 +592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b855ec688e6f40b489984a0d5267bd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnEnemies: 1
   _enemySpaceshipSpawnInterval: 5
-  _enemySpaceshipsHolder: {fileID: 18781777}
-  _playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  _enemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!4 &2032720069
 Transform:
   m_ObjectHideFlags: 0
