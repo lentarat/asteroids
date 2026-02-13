@@ -16,11 +16,6 @@ namespace Asteroids.Spaceship.Shooting
         
         private IFeedbackReceiver<ShotFiredEvent>[] _shotFiredFeedbackReceivers;
 
-        private void Start()
-        {
-            Debug.Log(GetComponent<IFeedbackReceiver<ShotFiredEvent>>());
-        }
-
         private float _lastShotTime;
         private Transform _projectilesParent;
         private Spaceship _parentSpaceship;

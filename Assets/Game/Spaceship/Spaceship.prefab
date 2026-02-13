@@ -78,6 +78,100 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.045090497, y: 0.6874014}
   m_EdgeRadius: 0
+--- !u!1 &1418516730853870436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8800655075555157315}
+  - component: {fileID: 4165508350972717858}
+  m_Layer: 0
+  m_Name: Movement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8800655075555157315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418516730853870436}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6363392371778268786}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4165508350972717858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418516730853870436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b97a112baaec9468616446cff44d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 6017686088791460897}
+  _spaceshipMovementSO: {fileID: 11400000, guid: e328619d8a2bff14788c66238572cb26, type: 2}
+--- !u!1 &1425191452793558897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8499943443996882143}
+  - component: {fileID: 3322613078527897351}
+  m_Layer: 0
+  m_Name: Shooting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8499943443996882143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425191452793558897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6363392371778268786}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3322613078527897351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425191452793558897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0f76503a29c6d4b90419fb85b38d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spaceshipWeaponSO: {fileID: 11400000, guid: e098474b9b7f95140b3169662b3448f0, type: 2}
+  _spaceshipProjectileSO: {fileID: 11400000, guid: 21af704c738bc6c4f9c450b75dfa5b56, type: 2}
+  _spaceshipBullet: {fileID: -8371888224038286128, guid: 0d0cb0f4d567e5846993255a497237d4, type: 3}
+  _randomPitchDeviation: 0.2
 --- !u!1 &3104371300708401529
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +328,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5174347, y: 0.6375952}
   m_EdgeRadius: 0
---- !u!1 &6383777345549970268
+--- !u!1 &4269721960942710044
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,33 +336,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 509615429176131502}
+  - component: {fileID: 1857754551611187513}
   m_Layer: 0
-  m_Name: Colliders
+  m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &509615429176131502
+--- !u!4 &1857754551611187513
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6383777345549970268}
+  m_GameObject: {fileID: 4269721960942710044}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3024034625758523059}
-  - {fileID: 7847867808249299837}
-  - {fileID: 993035984519892596}
+  m_Children: []
   m_Father: {fileID: 6363392371778268786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8005437697952000306
+--- !u!1 &4726548999682257465
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,44 +367,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6363392371778268786}
-  - component: {fileID: 1819813579064563309}
-  - component: {fileID: 6017686088791460897}
-  - component: {fileID: 5754974008639930870}
-  - component: {fileID: 8012553604298350159}
-  - component: {fileID: 4297812049980498182}
-  - component: {fileID: 1008984129751520972}
-  - component: {fileID: 3044859325441933004}
+  - component: {fileID: 4115890396803817444}
+  - component: {fileID: 6300072942032397393}
   m_Layer: 0
-  m_Name: Spaceship
+  m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6363392371778268786
+--- !u!4 &4115890396803817444
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8005437697952000306}
+  m_GameObject: {fileID: 4726548999682257465}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 509615429176131502}
-  m_Father: {fileID: 0}
+  m_Children: []
+  m_Father: {fileID: 6363392371778268786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1819813579064563309
+--- !u!212 &6300072942032397393
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8005437697952000306}
+  m_GameObject: {fileID: 4726548999682257465}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -365,6 +449,79 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6383777345549970268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 509615429176131502}
+  m_Layer: 0
+  m_Name: Colliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &509615429176131502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383777345549970268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3024034625758523059}
+  - {fileID: 7847867808249299837}
+  - {fileID: 993035984519892596}
+  m_Father: {fileID: 6363392371778268786}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8005437697952000306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6363392371778268786}
+  - component: {fileID: 6017686088791460897}
+  - component: {fileID: 5754974008639930870}
+  m_Layer: 0
+  m_Name: Spaceship
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6363392371778268786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8005437697952000306}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 509615429176131502}
+  - {fileID: 8800655075555157315}
+  - {fileID: 8499943443996882143}
+  - {fileID: 871031024036723234}
+  - {fileID: 4115890396803817444}
+  - {fileID: 1857754551611187513}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6017686088791460897
 Rigidbody2D:
   serializedVersion: 5
@@ -404,63 +561,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d1c5f578aed24489efd6f359ebd9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spaceshipShooting: {fileID: 4297812049980498182}
-  _spaceshipMovement: {fileID: 8012553604298350159}
-  _audioEmitter: {fileID: 1008984129751520972}
---- !u!114 &8012553604298350159
+  _spaceshipShooting: {fileID: 3322613078527897351}
+  _spaceshipMovement: {fileID: 4165508350972717858}
+  _spaceshipSpriteRenderer: {fileID: 6300072942032397393}
+  _audioEmitter: {fileID: 8407123684851722471}
+--- !u!1 &8989742319822682286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 871031024036723234}
+  - component: {fileID: 8407123684851722471}
+  - component: {fileID: 3971797495096398706}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &871031024036723234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8989742319822682286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6363392371778268786}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8407123684851722471
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8005437697952000306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1b97a112baaec9468616446cff44d01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 6017686088791460897}
-  _spaceshipMovementSO: {fileID: 11400000, guid: e328619d8a2bff14788c66238572cb26, type: 2}
---- !u!114 &4297812049980498182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8005437697952000306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be0f76503a29c6d4b90419fb85b38d4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spaceshipWeaponSO: {fileID: 11400000, guid: e098474b9b7f95140b3169662b3448f0, type: 2}
-  _spaceshipProjectileSO: {fileID: 11400000, guid: 21af704c738bc6c4f9c450b75dfa5b56, type: 2}
-  _spaceshipBullet: {fileID: -8371888224038286128, guid: 0d0cb0f4d567e5846993255a497237d4, type: 3}
-  _randomPitchDeviation: 0.2
---- !u!114 &1008984129751520972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8005437697952000306}
+  m_GameObject: {fileID: 8989742319822682286}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 506958f851f9bb8469061eef147fba5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteroids.General.Audio.AudioEmitter
---- !u!114 &3044859325441933004
+--- !u!114 &3971797495096398706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8005437697952000306}
+  m_GameObject: {fileID: 8989742319822682286}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9be8e7eefdb01174d93c899eafaeff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteroids.Game.Event.Handlers.ShotAudioFeedback
   _audioClip: {fileID: 8300000, guid: 9c6cee2e98b78de429a056cde81f5d7e, type: 3}
-  _audioEmitter: {fileID: 1008984129751520972}
+  _audioEmitter: {fileID: 8407123684851722471}
   _pitch: 1

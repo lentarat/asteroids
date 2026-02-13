@@ -15,6 +15,7 @@ namespace Asteroids.Spaceship
     {
         [SerializeField] private SpaceshipShooting _spaceshipShooting;
         [SerializeField] private SpaceshipMovement _spaceshipMovement;
+        [SerializeField] private SpriteRenderer _spaceshipSpriteRenderer;
         [SerializeField] private AudioEmitter _audioEmitter;
 
         private IDeathHandler _deathHandler;
@@ -31,9 +32,7 @@ namespace Asteroids.Spaceship
             ISpaceshipShooter spaceshipShooter = spaceshipContext.SpaceshipShooter;
             _spaceshipMovement.InitializeContext(spaceshipMover);
             _spaceshipShooting.InitializeContext(spaceshipShooter);
-
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.color = spaceshipContext.Color;
+            _spaceshipSpriteRenderer.color = spaceshipContext.Color;
 
             _deathHandler = spaceshipContext.DeathHandler;
         }
