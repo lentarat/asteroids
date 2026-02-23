@@ -31,8 +31,8 @@ namespace Asteroids.Spaceship.Movement
         {
             await UniTask.WaitForFixedUpdate();
 
-            transform.position = Vector2.zero;
-            transform.rotation = Quaternion.identity;
+            transform.root.position = Vector2.zero;
+            transform.root.rotation = Quaternion.identity;
             _currentVelocity = Vector2.zero;
             _currentAngularVelocity = 0;
         }

@@ -47,12 +47,12 @@ namespace Asteroids.Spaceship
             }
         }
 
-        void ISpaceship.SetActiveAfterFixedUpdate(bool isActive)
+        void ISpaceship.SetStateAfterFixedUpdate(bool isActive)
         {
-            SetActiveAfterFixedUpdateAsync(isActive).Forget();
+            SetStateAfterFixedUpdateAsync(isActive).Forget();
         }
 
-        private async UniTask SetActiveAfterFixedUpdateAsync(bool isActive)
+        private async UniTask SetStateAfterFixedUpdateAsync(bool isActive)
         {
             await UniTask.WaitForFixedUpdate();
             gameObject.SetActive(isActive);

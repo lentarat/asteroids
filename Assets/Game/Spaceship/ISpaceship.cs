@@ -4,7 +4,7 @@ namespace Asteroids.Spaceship
 {
     public interface ISpaceship
     {
-        void SetActiveAfterFixedUpdate(bool isActive);
+        void SetStateAfterFixedUpdate(bool isActive);
         void ResetMovement();
         void Die();
     }
