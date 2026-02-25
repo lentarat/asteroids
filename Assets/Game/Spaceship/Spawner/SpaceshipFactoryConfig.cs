@@ -14,7 +14,7 @@ namespace Asteroids.Spaceship.Creation
         public Transform ProjectilesParent { get; }
         public LayerMask PlayerLayer { get; }
         public LayerMask EnemyLayer { get; }
-        public EnemySpaceshipMovementLogicSO EnemyMovementLogic { get; }
+        public EnemySpaceshipMovementLogicSO EnemySpaceshipMovementLogicSO { get; }
         public PlayerInputActions PlayerInputActions { get; }
         public SignalBus SignalBus { get; }
         public AudioSourcePool AudioSourcePool { get; }
@@ -36,7 +36,7 @@ namespace Asteroids.Spaceship.Creation
             EnemySpaceshipsParent = enemySpaceshipsParent;
             PlayerLayer = playerLayer;
             EnemyLayer = enemyLayer;
-            EnemyMovementLogic = enemyMovementLogic;
+            EnemySpaceshipMovementLogicSO = enemyMovementLogic;
             PlayerInputActions = playerInputActions;
             SignalBus = signalBus;
             AudioSourcePool = audioSourcePool;

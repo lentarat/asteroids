@@ -85,15 +85,5 @@ namespace Asteroids.Spaceship.Movement
 
             return direction;
         }
-
-        private bool HasAccededMaxSpeed()
-        {
-            if (_rigidbody.linearVelocity.sqrMagnitude > _maxSpeedSqr)
-            {
-                return true;
-            }
-
-            return false;
-        }
     }
 }

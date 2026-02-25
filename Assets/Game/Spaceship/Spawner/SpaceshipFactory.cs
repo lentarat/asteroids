@@ -46,7 +46,7 @@ namespace Asteroids.Spaceship.Creation
             Rigidbody2D spaceshipRigidbody = spaceship.GetComponent<Rigidbody2D>();
 
             EnemySpaceshipMovementLogicSO enemySpaceshipMovementLogicSO =
-                _spaceshipFactoryConfig.EnemyMovementLogic;
+                _spaceshipFactoryConfig.EnemySpaceshipMovementLogicSO;
             ISpaceshipMover spaceshipMover = new EnemySpaceshipMover(
                 enemySpaceshipMovementLogicSO, spaceshipRigidbody, _playerRigidbody
                 );

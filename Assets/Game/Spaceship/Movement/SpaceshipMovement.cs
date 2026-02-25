@@ -10,9 +10,9 @@ namespace Asteroids.Spaceship.Movement
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private SpaceshipMovementSO _spaceshipMovementSO;
 
-        public event Action<bool> OnThrottleValueChanged;
+        public event Action<float> OnThrottleValueChanged;
 
-        private bool _isThrottling;
+        private float _lastThrottleValue;
         private float _currentAngularVelocity;
         private Vector2 _currentVelocity;
         private ISpaceshipMover _spaceshipMover;
@@ -58,22 +58,31 @@ namespace Asteroids.Spaceship.Movement
                 {
                     _currentVelocity = _currentVelocity.normalized * _spaceshipMovementSO.MaxSpeed;
                 }
+            }
 
-                UpdateThrottlingState(true);
+            bool hasThrottleValueChanged = HasThrottleValueChanged(throttleValue);
+            if (hasThrottleValueChanged)
+            {
+                UpdateThrottlingState(throttleValue);
+                _lastThrottleValue = throttleValue;
+            }
+        }
+
+        private bool HasThrottleValueChanged(float throttleValue)
+        {
+            if (_lastThrottleValue == throttleValue)
+            {
+                return false;
             }
             else
             {
-                UpdateThrottlingState(false);
+                return true;
             }
         }
-        
-        private void UpdateThrottlingState(bool isThrottling)
+
+        private void UpdateThrottlingState(float throttleValue)
         {
-            if (_isThrottling != isThrottling)
-            {
-                _isThrottling = isThrottling;
-                OnThrottleValueChanged?.Invoke(isThrottling);
-            }
+            OnThrottleValueChanged?.Invoke(throttleValue);     
         }
 
         private bool HasAcceededMaxSpeed()
