@@ -13,7 +13,7 @@ namespace Asteroids.Spaceship.Shooting
         [SerializeField] private SpaceshipProjectileSO _spaceshipProjectileSO;
         [SerializeField] private SpaceshipProjectile _spaceshipBullet;
         [SerializeField, Range(0f, 0.5f)] private float _randomPitchDeviation;
-        
+
         private IFeedbackReceiver<ShotFiredEvent>[] _shotFiredFeedbackReceivers;
 
         private float _lastShotTime;
@@ -48,8 +48,11 @@ namespace Asteroids.Spaceship.Shooting
             bool hasShootingIntervalPassed = HasShootingIntervalPassed();
             if (hasShootingIntervalPassed)
             {
-                SpaceshipProjectile spaceshipProjectile = 
-                    Instantiate(_spaceshipBullet, transform.position, Quaternion.identity, _projectilesParent);
+                SpaceshipProjectile spaceshipProjectile = Instantiate(
+                    _spaceshipBullet,
+                    transform.position,
+                    Quaternion.identity,
+                    _projectilesParent);
 
                 Sprite sprite = _spaceshipProjectileSO.ProjectileSprite;
                 Vector2 direction = transform.up;
