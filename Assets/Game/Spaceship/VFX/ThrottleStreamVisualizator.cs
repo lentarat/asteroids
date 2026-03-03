@@ -1,7 +1,9 @@
 using Asteroids.Spaceship.Movement;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System.Threading;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class ThrottleStreamVisualizator : MonoBehaviour
@@ -13,19 +15,26 @@ public class ThrottleStreamVisualizator : MonoBehaviour
     [SerializeField] private float _fluctuatingFrequency;
 
     private Tween _scaleTween;
-    
+
     private void Awake()
     {
         SubscribeToThrottleValueChanged();
-        AlternateStreamLengthAsync().Forget();
+
+        CancellationToken _cancellationToken = this.GetCancellationTokenOnDestroy();
+        AlternateStreamLengthAsync(_cancellationToken).Forget();
     }
 
-    private async UniTask AlternateStreamLengthAsync()
+    private async UniTask AlternateStreamLengthAsync(CancellationToken cancellationToken)
     {
-        while (true)
+        while (cancellationToken.IsCancellationRequested == false)
         {
             _scaleTween = transform.parent.DOScaleY(_minYScaleMultiplier, _fluctuatingFrequency);
             await _scaleTween;
+
+            if (cancellationToken.IsCancellationRequested)
+            {
+                break;
+            }
 
             _scaleTween = transform.parent.DOScaleY(_maxYScaleMultiplier, _fluctuatingFrequency);
             await _scaleTween;
